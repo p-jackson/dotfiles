@@ -1,0 +1,19 @@
+set nocompatible
+filetype off
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'tpope/vim-sensible'
+
+call vundle#end()
+filetype plugin indent on
+
+" automatically rebalance windows on vim resize
+autocmd VimResized * :wincmd =
+
+" show line numbers
+set number
+
