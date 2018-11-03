@@ -7,13 +7,52 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'tpope/vim-sensible'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'prettier/vim-prettier'
 
 call vundle#end()
 filetype plugin indent on
 
-" automatically rebalance windows on vim resize
+" Use space as leader key
+let mapleader = "\<Space>"
+
+" Automatically rebalance windows on vim resize
 autocmd VimResized * :wincmd =
 
-" show line numbers
+" Show line numbers
 set number
+
+" Indent 2 spaces (by default, projects should use editorconfig)
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+
+" 0 goes to the first non-blank character rather than the first character
+nmap 0 ^
+
+" Leave insert mode by mashing jk keys
+imap jk <esc>
+imap kj <esc>
+
+" Move up and down by visual lines if line is wrapped
+nmap j gj
+nmap k gk
+
+" Copy whole file
+nmap <leader>co ggVG"*y
+
+" Open package.json in a new tab
+nmap <leader>pg :tabedit package.json<cr>
+
+" Run prettier
+nmap <leader>p :Prettier<cr>
+
+" Change vim-prettier defaults back to what regular prettier use
+let g:prettier#config#single_quote = 'false'
+let g:prettier#config#bracket_spacing = 'true'
+let g:prettier#config#jsx_bracket_same_line = 'false'
+let g:prettier#config#arrow_parens = 'avoid'
+let g:prettier#config#trailing_comma = 'none'
+let g:prettier#config#parser = 'babylon'
 
