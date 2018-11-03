@@ -9,6 +9,8 @@ Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'tpope/vim-sensible'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'prettier/vim-prettier'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'tpope/vim-surround'
 
 call vundle#end()
 filetype plugin indent on
@@ -55,4 +57,18 @@ let g:prettier#config#jsx_bracket_same_line = 'false'
 let g:prettier#config#arrow_parens = 'avoid'
 let g:prettier#config#trailing_comma = 'none'
 let g:prettier#config#parser = 'babylon'
+
+" Use ripgrep for searching with ctrl+p
+if executable('rg')
+  set grepprg=rg\ --color=never
+  let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
+  let g:ctrlp_use_caching = 0
+endif
+
+" Ignore .git files
+set wildignore+=*/.git/*,*/tmp/*,*.swp
+
+" Open new splits to the right and bottom
+set splitbelow
+set splitright
 
