@@ -66,7 +66,7 @@ if executable('rg')
 endif
 
 " Ignore .git files
-set wildignore+=*/.git/*,*/tmp/*,*.swp
+set wildignore+=*/.git/*,*/node_modules/*,*/tmp/*,*.swp
 
 " Open new splits to the right and bottom
 set splitbelow
