@@ -72,3 +72,5 @@ set wildignore+=*/.git/*,*/node_modules/*,*/tmp/*,*.swp
 set splitbelow
 set splitright
 
+" Show relative line numbers in gutter
+set relativenumber
