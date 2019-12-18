@@ -29,6 +29,10 @@ set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 set expandtab
+" Or comment out the above and uncomment below to use tabs instead
+" set tabstop=2
+" shiftwidth=2
+" set noexpandtab
 
 " 0 goes to the first non-blank character rather than the first character
 nmap 0 ^
