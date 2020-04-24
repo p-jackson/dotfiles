@@ -1,0 +1,58 @@
+#!/bin/zsh
+
+PORT="${PORT:-1738}"
+DONE_COLOR="${DONE_COLOR:-"black"}"
+PROGRESS_COLOR="${PROGRESS_COLOR:-"white"}"
+INITIAL_COLOR="${INITIAL_COLOR:-"white"}"
+BUILD_ERROR_COLOR="${BUILD_ERROR_COLOR:-"red"}"
+BUILD_WARNING_COLOR="${BUILD_WARNING_COLOR:-"yellow"}"
+TEST_ERROR_COLOR="${TEST_ERROR_COLOR:-"purple"}"
+
+HAS_ERROR=0
+
+main() {
+	reset_icon
+	tee >(update_status)
+}
+
+update_status() {
+	while read line
+	do
+		if [[ "$line" =~ "[wdm]: Compiled successfully." ]]; then
+			if [ $HAS_ERROR -eq 0 ]; then
+				set_icon "$DONE_COLOR"
+			else
+				set_icon "$BUILD_ERROR_COLOR"
+			fi
+		elif [[ "$line" =~ "[wdm]: Compiled with warnings." ]]; then
+			if [ $HAS_ERROR -eq 0 ]; then
+				set_icon "$BUILD_WARNING_COLOR"
+			else
+				set_icon "$BUILD_ERROR_COLOR"
+			fi
+		elif [[ "$line" =~ "[wdm]: Compiling..." ]]; then
+			HAS_ERROR=0
+			set_icon "$PROGRESS_COLOR"
+		elif [[ "$line" =~ "ERROR" ]]; then
+			HAS_ERROR=1
+		# for `npm run test-client:watch`
+		elif [[ "$line" =~ "restarting due to changes" ]]; then
+			reset_icon
+		# for both test-client and test-client:watch
+		elif [[ "$line" =~ "app crashed" ]] || [[ "$line" =~ ^[0-9]+\ failing$ ]]; then
+			set_icon "$TEST_ERROR_COLOR"
+		fi
+	done
+}
+
+set_icon() {
+	echo -n "$1" | nc -4u -w0 localhost $PORT
+}
+
+reset_icon() {
+	if [ "$INITIAL_COLOR" != "" ] && [ "$INITIAL_COLOR" != "none" ]; then
+		set_icon "$INITIAL_COLOR"
+	fi
+}
+
+main
