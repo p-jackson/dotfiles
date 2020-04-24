@@ -25,14 +25,14 @@ autocmd VimResized * :wincmd =
 set number
 
 " Indent 2 spaces (by default, projects should use editorconfig)
+"set tabstop=2
+"set shiftwidth=2
+"set softtabstop=2
+"set expandtab
+" Or comment out the above and uncomment below to use tabs instead
 set tabstop=2
 set shiftwidth=2
-set softtabstop=2
-set expandtab
-" Or comment out the above and uncomment below to use tabs instead
-" set tabstop=2
-" shiftwidth=2
-" set noexpandtab
+set noexpandtab
 
 " 0 goes to the first non-blank character rather than the first character
 nmap 0 ^
@@ -52,7 +52,7 @@ nmap <leader>co ggVG"*y
 nmap <leader>pg :tabedit package.json<cr>
 
 " Run prettier
-nmap <leader>p :Prettier<cr>
+nmap <leader>f :Prettier<cr>
 
 " Change vim-prettier defaults back to what regular prettier use
 let g:prettier#config#single_quote = 'false'
