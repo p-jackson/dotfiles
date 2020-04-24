@@ -72,7 +72,7 @@ DEFAULT_USER=philip
 plugins=(
   git
   docker
-  aws
+  #aws
   npm
   node
   tmux
