@@ -156,3 +156,9 @@ eval "$(starship init zsh)"
 # Git Aliases
 git config --global alias.lg 'log --graph --oneline --decorate --color --all'
 
+
+# pnpm
+export PNPM_HOME="/Users/philip/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end
+
