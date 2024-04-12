@@ -166,3 +166,6 @@ export PATH="$PNPM_HOME:$PATH"
 export DENO_INSTALL="$HOME/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 
+# Python with no version suffix
+export PATH="$(brew --prefix python)/libexec/bin:$PATH"
+
