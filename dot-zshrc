@@ -140,6 +140,8 @@ export NVM_DIR="$HOME/.nvm"
 
 export PATH="$HOME/bin:$PATH"
 
+export XDG_CONFIG_HOME="$HOME/.config"
+
 # Add private-bin to path
 if [[ -d "$HOME/private-bin" ]]; then
   export PATH=$HOME/private-bin:$PATH
