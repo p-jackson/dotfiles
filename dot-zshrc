@@ -109,6 +109,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias v=nvim
 alias dev="cd ~/dev"
+alias dotfiles="cd ~/dev/dotfiles"
 alias studio="cd ~/dev/local-environment"
 alias zk="cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/notes"
 
