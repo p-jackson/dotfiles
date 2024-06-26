@@ -110,6 +110,7 @@ source $ZSH/oh-my-zsh.sh
 alias v=nvim
 alias dev="cd ~/dev"
 alias studio="cd ~/dev/local-environment"
+alias zk="cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/notes"
 
 # Install brew completions
 if type brew &>/dev/null; then
