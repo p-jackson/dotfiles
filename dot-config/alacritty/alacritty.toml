@@ -10,6 +10,8 @@ family = "CaskaydiaCove Nerd Font"
 
 [window]
 decorations = "none"
+opacity = 0.85
+blur = true
 
 [window.padding]
 x = 7
