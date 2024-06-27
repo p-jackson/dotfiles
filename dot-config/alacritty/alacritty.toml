@@ -20,3 +20,12 @@ y = 0
 [env]
 TERM = "xterm-256color"
 
+[keyboard]
+bindings = [
+	{ key = "p", mods = "Command", chars = "•`_´•p" },
+	{ key = "j", mods = "Command", chars = "•`_´•j" },
+	{ key = "k", mods = "Command", chars = "•`_´•k" },
+	{ key = "l", mods = "Command", chars = "•`_´•l" },
+	{ key = ";", mods = "Command", chars = "•`_´•;" },
+]
+
