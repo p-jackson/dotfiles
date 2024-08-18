@@ -22,6 +22,9 @@ require("lazy").setup({
   install = { colorscheme = { "night-owl" } },
   -- automatically check for plugin updates
   checker = { enabled = true },
+	defaults = {
+		version = "*",
+	},
 })
 
 require("config.remap")
