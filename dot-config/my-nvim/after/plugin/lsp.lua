@@ -2,6 +2,7 @@ local lsp_zero = require("lsp-zero")
 
 lsp_zero.on_attach(function(client, bufnr)
 	lsp_zero.default_keymaps({ buffer = bufnr })
+	lsp_zero.buffer_autoformat();
 end)
 
 require("mason").setup({})
@@ -9,7 +10,7 @@ require("mason-lspconfig").setup({
 	ensure_installed = { "tsserver", "rust_analyzer", "eslint", "lua_ls" },
 	handlers = {
 		-- this first function is the "default handler"
-    -- it applies to every language server without a "custom handler"
+		-- it applies to every language server without a "custom handler"
 		function(server_name)
 			require("lspconfig")[server_name].setup({})
 		end,
@@ -27,4 +28,3 @@ require("mason-lspconfig").setup({
 		]]
 	},
 })
-
