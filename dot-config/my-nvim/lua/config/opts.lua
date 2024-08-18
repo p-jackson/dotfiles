@@ -8,6 +8,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 8
 vim.opt.updatetime = 50
+vim.wo.wrap = false
 
 -- Relative line numbering in Netrw
 vim.g.netrw_bufsettings = "noma nomod nonu nobl nowrap ro rnu"
@@ -17,4 +18,8 @@ vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
+
+-- Used by obsidian to format md nicely, but if it starts to hide things
+-- in other languages then we should move this to a ftplugin
+vim.opt.conceallevel = 2
 

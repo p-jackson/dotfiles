@@ -17,3 +17,7 @@ vim.keymap.set("n", "<leader>-", ":split<cr><C-w>w");
 -- Close current window/split
 vim.keymap.set("n", "<leader>dd", "<C-w>q");
 
+-- Search notes from any project
+vim.keymap.set("n", "<leader>zp", ":Telescope find_files search_dirs={\"~/Library/Mobile\\ Documents/iCloud~md~obsidian/Documents/notes\"}<cr>")
+vim.keymap.set("n", "<leader>zg", ":Telescope live_grep search_dirs={\"~/Library/Mobile\\ Documents/iCloud~md~obsidian/Documents/notes\"}<cr>")
+

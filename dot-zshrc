@@ -112,10 +112,17 @@ alias lg="lazygit"
 alias dev="cd ~/dev"
 alias dotfiles="cd ~/dev/dotfiles"
 alias studio="cd ~/dev/local-environment"
-alias zk="cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/notes"
+export NOTES_PATH="$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents/notes"
 
-alias my-nvim="NVIM_APPNAME=my-nvim nvim"
-alias v="NVIM_APPNAME=my-nvim nvim"
+export NVIM_CMD="NVIM_APPNAME=my-nvim nvim"
+
+alias my-nvim=$NVIM_CMD
+alias v=$NVIM_CMD
+
+# Notes
+alias zk="cd $HOME/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/notes" # Nav to notes
+alias zn="create-new-note" # Create new note, script is in bin folder
+alias zr="cd $HOME/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/notes && $NVIM_CMD -p $HOME/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/notes/0-inbox/*.md" # Review notes in inbox
 
 # Install brew completions
 if type brew &>/dev/null; then

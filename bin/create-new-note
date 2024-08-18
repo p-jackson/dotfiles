@@ -1,0 +1,16 @@
+#!/bin/zsh
+#
+# Create a new obsidian-style note
+
+if [ -z "$1" ]; then
+	echo "Error: Must pass a note title, e.g. zn \"Les Misérables\"."
+	exit 1
+fi
+
+clean_title="$(echo "$1" | tr '[:upper:]' '[:lower:]' | tr -dC '[:alnum:][:cntrl:]- ' | tr -s ' ' '-')"
+file_name="0-inbox/${clean_title}.md"
+cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/notes || exit
+touch $file_name
+echo "# $1" >> $file_name
+eval $NVIM_CMD $file_name
+
