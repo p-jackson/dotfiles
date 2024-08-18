@@ -1,5 +1,5 @@
--- Show folder explorer (Netrw)
-vim.keymap.set("n", "<leader>ls", vim.cmd.Ex)
+-- Show Oil for file management
+vim.keymap.set("n", "<leader>ls", ":Oil<cr>")
 
 -- Toggle undotree
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
