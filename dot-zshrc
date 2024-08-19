@@ -107,22 +107,17 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-# alias v=nvim
+alias v=nvim
 alias lg="lazygit"
 alias dev="cd ~/dev"
 alias dotfiles="cd ~/dev/dotfiles"
 alias studio="cd ~/dev/local-environment"
 export NOTES_PATH="$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents/notes"
 
-export NVIM_CMD="NVIM_APPNAME=my-nvim nvim"
-
-alias my-nvim=$NVIM_CMD
-alias v=$NVIM_CMD
-
 # Notes
 alias zk="cd $HOME/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/notes" # Nav to notes
 alias zn="create-new-note" # Create new note, script is in bin folder
-alias zr="cd $HOME/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/notes && $NVIM_CMD -p $HOME/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/notes/0-inbox/*.md" # Review notes in inbox
+alias zr="cd $HOME/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/notes && nvim -p $HOME/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/notes/0-inbox/*.md" # Review notes in inbox
 
 # Install brew completions
 if type brew &>/dev/null; then

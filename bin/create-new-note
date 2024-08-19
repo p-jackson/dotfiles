@@ -12,5 +12,5 @@ file_name="0-inbox/${clean_title}.md"
 cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/notes || exit
 touch $file_name
 echo "# $1" >> $file_name
-eval $NVIM_CMD $file_name
+eval nvim $file_name
 
