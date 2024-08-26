@@ -12,5 +12,5 @@ file_name="0-inbox/${clean_title}.md"
 cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/notes || exit
 touch $file_name
 echo "# $1" >> $file_name
-eval nvim $file_name
+nvim $file_name -c "call setpos('.', [0, 1, 1, 0])" -c "ObsidianTemplate note"
 
