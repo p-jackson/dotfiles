@@ -1,163 +1,84 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+# ENVIRONMENT SETUP
 
-# Path to your oh-my-zsh installation.
-export ZSH="/Users/philip/.oh-my-zsh"
+# Commands can be edited with vim keys
+set -o vi
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-#ZSH_THEME="robbyrussell"
-ZSH_THEME="agnoster"
-DEFAULT_USER=philip
+# Share history between sessions
+setopt SHARE_HISTORY
 
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+export VISUAL=nvim
+export EDITOR=nvim
+export XDG_CONFIG_HOME=$HOME/.config
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+# Setup Homebrew's environment variables
+if [ "$(arch)" = "arm64" ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv zsh)"
+else
+	eval "$(/usr/local/bin/brew shellenv zsh)"
+fi
 
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to automatically update without prompting.
-# DISABLE_UPDATE_PROMPT="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS=true
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load?
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(
-  git
-  docker
-  #aws
-  npm
-  node
-  tmux
-	zsh-autosuggestions
-)
-
-source $ZSH/oh-my-zsh.sh
-
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-  
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-alias v=nvim
-alias lg="lazygit"
-alias dev="cd ~/dev"
-alias dotfiles="cd ~/dev/dotfiles"
-alias studio="cd ~/dev/local-environment"
+export REPO_PATH="$HOME/dev"
 export NOTES_PATH="$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents/notes"
 
-# Notes
-alias zk="cd $HOME/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/notes" # Nav to notes
-alias zn="create-new-note" # Create new note, script is in bin folder
-alias zr="cd $HOME/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/notes && nvim -p $HOME/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/notes/0-inbox/*.md" # Review notes in inbox
 
-# Install brew completions
-if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
-fi
+# PATH
 
-if [ "$(arch)" = "arm64" ]; then
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-else
-	eval "$(/usr/local/bin/brew shellenv)"
-fi
+# For personal scripts
+export PATH=$PATH:$HOME/bin
 
-# Run tmux if it isn't already running
-_not_inside_tmux() { [[ -z "$TMUX" ]] }
-
-ensure_tmux_is_running() {
-  if _not_inside_tmux; then
-    tat
-  fi
-}
-
-# Don't open tmux by default. It breaks apps that automatically open a terminal window.
-# ensure_tmux_is_running
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# Personal scripts
-export PATH="$HOME/bin:$PATH"
-
-export XDG_CONFIG_HOME="$HOME/.config"
-
-# Add private-bin to path
+# For scripts private-bin not stored in this repo
 if [[ -d "$HOME/private-bin" ]]; then
   export PATH=$HOME/private-bin:$PATH
 fi
 
 # Ensures that composer users the config from the current repo
 export PATH=./vendor/bin:$PATH
+
+
+# PROMPT (starship)
+
+eval "$(starship init zsh)"
+
+
+# ALIASES
+
+alias ls='ls --color=auto'
+alias la='ls -hAl'
+
+alias v=nvim
+
+alias lg="lazygit"
+git config --global alias.lg 'log --graph --oneline --decorate --color --all'
+
+# Repos
+alias dev="cd $REPO_PATH"
+alias cal="cd $REPO_PATH/wp-calypso"
+alias dot="cd $REPO_PATH/dotfiles"
+alias studio="cd $REPO_PATH/local-environment"
+
+# Notes
+alias zk="cd \$NOTES_PATH" # Nav to notes directory
+alias zn="create-new-note" # Create new note, script is in ~/bin folder
+alias zr="cd \$NOTES_PATH && nvim -p \$NOTES_PATH/0-inbox/*.md" # Review notes in inbox
+
+
+# COMPLETIONS
+
+# Install brew completions
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+fi
+
+# fzf keybindings and completion
+source <(fzf --zsh)
+
+
+# MISC SETUP
+
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Calypso dev performance
 export NODE_OPTIONS=--max-old-space-size=24576
@@ -168,32 +89,24 @@ export PLAYWRIGHT_SKIP_DOWNLOAD=true
 # Calypso e2e test environment
 export NODE_CONFIG_ENV=development
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
-# Setup Starship Prompt
-eval "$(starship init zsh)"
-
-# Git Aliases
-git config --global alias.lg 'log --graph --oneline --decorate --color --all'
-
-# Setup fzf keybindings and completion
-source <(fzf --zsh)
+# Yarn
+export PATH=$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin
 
 # pnpm
 export PNPM_HOME="/Users/philip/Library/pnpm"
-export PATH="$PNPM_HOME:$PATH"
+export PATH=$PATH:$PNPM_HOME
 # pnpm end
 
 # deno
 export DENO_INSTALL="$HOME/.deno"
-export PATH="$DENO_INSTALL/bin:$PATH"
+export PATH=$PATH:$DENO_INSTALL/bin
 
 # Python with no version suffix
-export PATH="$(brew --prefix python)/libexec/bin:$PATH"
+export PATH="$PATH:$(brew --prefix python)/libexec/bin"
 
 
 # Herd injected PHP binary.
-export PATH="/Users/philip/Library/Application Support/Herd/bin/":$PATH
+export PATH=$PATH:"/Users/philip/Library/Application Support/Herd/bin/"
 
 
 # Herd injected PHP 8.2 configuration.
