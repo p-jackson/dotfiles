@@ -35,6 +35,9 @@ fi
 export PATH=./vendor/bin:$PATH
 
 # Rust toolchain (the traditional rustup install method does this automatically, but we're using Homebrew)
+if [[ -d "$(brew --prefix rustup)/bin" ]]; then
+  export PATH=$(brew --prefix rustup)/bin:$PATH
+fi
 export PATH=$HOME/.cargo/bin:$PATH
 
 
@@ -74,6 +77,11 @@ fi
 
 # fzf keybindings and completion
 source <(fzf --zsh)
+
+# rustup completions
+if type rustup &>/dev/null; then
+	source <(rustup completions zsh)
+fi
 
 
 # MISC SETUP
