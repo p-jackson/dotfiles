@@ -10,7 +10,7 @@ family = "CaskaydiaCove NF"
 
 [window]
 decorations = "none"
-opacity = 0.85
+opacity = 0.8
 blur = true
 
 [window.padding]
