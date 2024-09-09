@@ -34,6 +34,9 @@ fi
 # Ensures that composer users the config from the current repo
 export PATH=./vendor/bin:$PATH
 
+# Rust toolchain (the traditional rustup install method does this automatically, but we're using Homebrew)
+export PATH=$HOME/.cargo/bin:$PATH
+
 
 # PROMPT (starship)
 
