@@ -8,6 +8,7 @@ $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/
 
 # Install dependencies
 $ brew install fd fzf git lazygit neovim ripgrep rustup starship stow tmux trash
+$ brew install --cask font-caskaydia-cove-nerd-font
 $ cargo install rust-script
 
 # Create config home ourselves so that it's not "owned" by stow
