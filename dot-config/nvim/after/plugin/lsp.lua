@@ -7,7 +7,7 @@ end)
 
 require("mason").setup({})
 require("mason-lspconfig").setup({
-	ensure_installed = { "tsserver", "rust_analyzer", "eslint", "lua_ls" },
+	ensure_installed = { "ts_lsp", "rust_analyzer", "eslint", "lua_ls" },
 	handlers = {
 		-- this first function is the "default handler"
 		-- it applies to every language server without a "custom handler"
