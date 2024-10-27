@@ -24,6 +24,10 @@ return {
 			-- Instead of true it can also be a list of languages
 			additional_vim_regex_highlighting = false,
 		},
-	}
+	},
+	config = function(_, opts)
+		require("nvim-treesitter.configs").setup(opts)
+		vim.treesitter.language.register('tsx', 'typescriptreact')
+	end
 }
 
