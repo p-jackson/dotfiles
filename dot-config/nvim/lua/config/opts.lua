@@ -9,6 +9,7 @@ vim.opt.relativenumber = true
 vim.opt.scrolloff = 8
 vim.opt.updatetime = 50
 vim.wo.wrap = false
+vim.o.cursorline = true
 
 -- Relative line numbering in Netrw
 vim.g.netrw_bufsettings = "noma nomod nonu nobl nowrap ro rnu"
