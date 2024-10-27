@@ -26,3 +26,6 @@ vim.keymap.set("n", "<leader>zg",
 -- Run pdflatex on current file
 vim.keymap.set("n", "<leader>pdf",
 	":silent !pdflatex '%:p'<cr>")
+
+-- Autofix using ESLint
+vim.keymap.set("n", "<leader>ff", ":EslintFixAll<cr>")
