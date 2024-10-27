@@ -29,3 +29,21 @@ vim.keymap.set("n", "<leader>pdf",
 
 -- Autofix using ESLint
 vim.keymap.set("n", "<leader>ff", ":EslintFixAll<cr>")
+
+-- Upload current wpcom file to sandbox
+vim.keymap.set("n", "tu", function()
+	vim.cmd("TransferUpload " .. vim.fn.expand("%:p"))
+end)
+-- Download current wpcom file from sandbox
+vim.keymap.set("n", "td", function()
+	vim.cmd("TransferDownload " .. vim.fn.expand("%:p"))
+end)
+vim.keymap.set("n", "tf", ":TransferDirDiff %:h<cr>")
+-- Diff current wpcom directory with remote
+vim.keymap.set("n", "tf", function()
+	local path = vim.fn.expand("%:p")
+	if vim.loop.fs_stat(path) ~= "directory" then
+		path = vim.fn.expand("%:h")
+	end
+	vim.cmd("TransferDirDiff " .. path)
+end)
