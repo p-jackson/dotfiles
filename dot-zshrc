@@ -40,6 +40,9 @@ if [[ -d "$(brew --prefix rustup)/bin" ]]; then
 fi
 export PATH=$HOME/.cargo/bin:$PATH
 
+# Scripts installed by pipx
+export PATH=$PATH:$HOME/.local/bin
+
 
 # PROMPT (starship)
 
