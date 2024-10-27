@@ -70,6 +70,9 @@ alias zr="cd \$NOTES_PATH && nvim -p \$NOTES_PATH/0-inbox/*.md" # Review notes i
 
 # COMPLETIONS
 
+autoload -Uz compinit
+compinit
+
 # Install brew completions
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
@@ -83,13 +86,16 @@ if type rustup &>/dev/null; then
 	source <(rustup completions zsh)
 fi
 
+# nvm bash_completion
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
 
 # MISC SETUP
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # Calypso dev performance
 export NODE_OPTIONS=--max-old-space-size=24576
@@ -138,4 +144,3 @@ export HERD_PHP_74_INI_SCAN_DIR="/Users/philip/Library/Application Support/Herd/
 
 # Herd injected PHP 8.0 configuration.
 export HERD_PHP_80_INI_SCAN_DIR="/Users/philip/Library/Application Support/Herd/config/php/80/"
-
