@@ -48,6 +48,9 @@ vim.keymap.set("n", "tf", function()
 	vim.cmd("TransferDirDiff " .. path)
 end)
 
+-- Open repo in GitHub
+vim.keymap.set("n", "<leader>gw", ":silent !gh repo view --web<cr>")
+
 -- Quickfix list navigation
 -- Alacritty maps Cmd+J to •`_´•j etc.
 vim.keymap.set("n", "•`_´•d", vim.diagnostic.setqflist)
