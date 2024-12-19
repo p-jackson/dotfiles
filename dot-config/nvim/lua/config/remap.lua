@@ -47,3 +47,9 @@ vim.keymap.set("n", "tf", function()
 	end
 	vim.cmd("TransferDirDiff " .. path)
 end)
+
+-- Quickfix list navigation
+-- Alacritty maps Cmd+J to •`_´•j etc.
+vim.keymap.set("n", "•`_´•d", vim.diagnostic.setqflist)
+vim.keymap.set("n", "•`_´•j", "<cmd>cnext<CR>")
+vim.keymap.set("n", "•`_´•k", "<cmd>cprev<CR>")

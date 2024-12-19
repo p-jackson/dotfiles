@@ -22,10 +22,15 @@ TERM = "xterm-256color"
 
 [keyboard]
 bindings = [
-	{ key = "p", mods = "Command", chars = "•`_´•p" },
+	{ key = "d", mods = "Command", chars = "•`_´•d" },
+	{ key = "h", mods = "Command", chars = "•`_´•h" },
+	{ key = "i", mods = "Command", chars = "•`_´•i" },
 	{ key = "j", mods = "Command", chars = "•`_´•j" },
 	{ key = "k", mods = "Command", chars = "•`_´•k" },
 	{ key = "l", mods = "Command", chars = "•`_´•l" },
+	{ key = "o", mods = "Command", chars = "•`_´•o" },
+	{ key = "p", mods = "Command", chars = "•`_´•p" },
+	{ key = "u", mods = "Command", chars = "•`_´•u" },
 	{ key = ";", mods = "Command", chars = "•`_´•;" },
 	{ key = "Key1", mods = "Control", chars = "\u001b[49;5u" },
 	{ key = "Key2", mods = "Control", chars = "\u001b[50;5u" },
