@@ -7,7 +7,8 @@
 $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # Install dependencies
-$ brew install awscli fd fzf font-caskaydia-cove-nerd-font git lazygit neovim pipx ripgrep rustup starship stow tmux trash
+$ brew install awscli FelixKratz/formulae/borders fd fzf font-caskaydia-cove-nerd-font font-hack-nerd-font git lazygit neovim pipx ripgrep rustup FelixKratz/formulae/sketchybar starship stow tmux trash
+$ brew install --cask sf-symbols
 $ rustup default stable
 $ cargo install rust-script
 

@@ -3,19 +3,18 @@ import = [
 ]
 
 [font]
-size = 16
+size = 18
 
 [font.normal]
 family = "CaskaydiaCove NF"
 
 [window]
-decorations = "none"
-opacity = 0.8
-blur = true
+decorations = "buttonless"
+opacity = 0.95
 
 [window.padding]
-x = 7
-y = 0
+x = 3
+y = 5
 
 [env]
 TERM = "xterm-256color"
