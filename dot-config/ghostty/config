@@ -1,0 +1,32 @@
+font-family = CaskaydiaCove Nerd Font Mono
+font-size = 18
+font-feature = ss01
+font-feature = ss02
+font-feature = ss03
+font-feature = ss19
+font-feature = ss20
+font-thicken = true
+
+theme = Overnight Slumber
+background = #011627
+background-opacity = 0.92
+
+macos-titlebar-style = hidden
+confirm-close-surface = false
+
+keybind = cmd+d=text:•`_´•d
+keybind = cmd+h=text:•`_´•h
+keybind = cmd+i=text:•`_´•i
+keybind = cmd+j=text:•`_´•j
+keybind = cmd+k=text:•`_´•k
+keybind = cmd+l=text:•`_´•l
+keybind = cmd+o=text:•`_´•o
+keybind = cmd+p=text:•`_´•p
+keybind = cmd+u=text:•`_´•u
+keybind = cmd+;=text:•`_´•;
+keybind = ctrl+1=text:\x1b[49;5u
+keybind = ctrl+2=text:\x1b[50;5u
+keybind = ctrl+3=text:\x1b[51;5u
+keybind = ctrl+4=text:\x1b[52;5u
+keybind = ctrl+5=text:\x1b[53;5u
+keybind = ctrl+6=text:\x1b[54;5u
