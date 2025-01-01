@@ -1,6 +1,11 @@
 -- Show Oil for file management
 vim.keymap.set("n", "<leader>ls", ":Oil<cr>")
 
+-- Execute Lua inline
+vim.keymap.set("n", "<leader><leader>x", "<cmd>source %<CR>")
+vim.keymap.set("n", "<leader>x", ":.lua<CR>")
+vim.keymap.set("v", "<leader>x", ":lua<CR>")
+
 -- Toggle undotree
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
 
@@ -16,6 +21,9 @@ vim.keymap.set("n", "<leader>-", ":split<cr><C-w>w");
 
 -- Close current window/split
 vim.keymap.set("n", "<leader>dd", "<C-w>q");
+
+-- Clear search result highlights with <Esc> in normal mode
+vim.keymap.set("n", "<Esc>", ":nohlsearch<cr>")
 
 -- Search notes from any project
 vim.keymap.set("n", "<leader>zp",
