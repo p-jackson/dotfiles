@@ -35,9 +35,6 @@ vim.keymap.set("n", "<leader>zg",
 vim.keymap.set("n", "<leader>pdf",
 	":silent !pdflatex '%:p'<cr>")
 
--- Autofix using ESLint
-vim.keymap.set("n", "<leader>ff", ":EslintFixAll<cr>")
-
 -- Upload current wpcom file to sandbox
 vim.keymap.set("n", "tu", function()
 	vim.cmd("TransferUpload " .. vim.fn.expand("%:p"))

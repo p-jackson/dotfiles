@@ -5,4 +5,4 @@ require("config.opts")
 require("config.lazy")
 require("config.remap")
 require("config.highlight-on-yank")
-
+require("config.calypso-format")

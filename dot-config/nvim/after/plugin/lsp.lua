@@ -1,8 +1,16 @@
+local projects = require("config.projects")
 local lsp_zero = require("lsp-zero")
 
 lsp_zero.on_attach(function(client, bufnr)
 	lsp_zero.default_keymaps({ buffer = bufnr })
-	-- lsp_zero.buffer_autoformat();
+
+	if (projects.is_buffer_in_calypso(bufnr)) then
+		-- Calypso is formatted with ESLint --fix-all, not an LSP
+		-- See calypso-format.lua
+		return;
+	end
+
+	lsp_zero.buffer_autoformat();
 end)
 
 require("mason").setup({})
