@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+SCRIPT_DIR=$(dirname "$(realpath "$0")")
+APPLE_SCRIPT_PATH="$SCRIPT_DIR/force-reconnect.applescript"
+
+if [[ "$1" == "on" ]]; then
+	sudo hostctl enable wpcom
+	osascript $APPLE_SCRIPT_PATH
+elif [[ "$1" == "off" ]] then
+	sudo hostctl disable wpcom
+	osascript $APPLE_SCRIPT_PATH
+else
+	echo "Usage: $0 on|off"
+
+	# Forces autoproxxy reconnection no matter what, since running
+	# this script with no args is a convenient way to do it.
+	osascript $APPLE_SCRIPT_PATH
+
+	exit 1
+fi
