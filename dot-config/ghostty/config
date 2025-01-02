@@ -30,3 +30,5 @@ keybind = ctrl+3=text:\x1b[51;5u
 keybind = ctrl+4=text:\x1b[52;5u
 keybind = ctrl+5=text:\x1b[53;5u
 keybind = ctrl+6=text:\x1b[54;5u
+keybind = shift+f11=text: •`_´•f11
+
