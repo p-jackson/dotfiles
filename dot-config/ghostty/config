@@ -13,6 +13,7 @@ background-opacity = 0.92
 
 macos-titlebar-style = hidden
 confirm-close-surface = false
+mouse-hide-while-typing = true
 
 keybind = cmd+d=text:•`_´•d
 keybind = cmd+h=text:•`_´•h
