@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+if [[ "$1" == "cal" ]]; then
+	SESSION_NAME="wp-calypso"
+	CALYPSO_DIR="$HOME/dev/wp-calypso"
+
+	# Check if session already exists
+	tmux has-session -t "$SESSION_NAME" 2>/dev/null
+	if [ $? -eq 0 ]; then
+		echo "Session '$SESSION_NAME' already exists. Switching..."
+		tmux switch-client -t "$SESSION_NAME"
+		exit 0
+	fi
+
+	tmux new-session -d -s "$SESSION_NAME" -c "$CALYPSO_DIR"
+	tmux send-keys -t "$SESSION_NAME":1 "nvim" C-m
+
+	tmux new-window -t "$SESSION_NAME":2 -c "$CALYPSO_DIR"
+	tmux send-keys -t "$SESSION_NAME":2 "lazygit" C-m
+
+	tmux new-window -t "$SESSION_NAME":3 -c "$CALYPSO_DIR"
+	tmux split-window -v -t "$SESSION_NAME":3 -c "$CALYPSO_DIR"
+	tmux resize-pane -t "$SESSION_NAME":3.1 -y 25%
+	tmux send-keys -t "$SESSION_NAME":3 "nvm use && yarn && yarn start" C-m
+	
+	tmux switch-client -t "$SESSION_NAME":1
+
+elif [[ "$1" == "zk" ]]; then
+	echo "Not implemented yet"
+else
+	echo "Usage: $0 cal|zk"
+	exit 1
+fi
+
