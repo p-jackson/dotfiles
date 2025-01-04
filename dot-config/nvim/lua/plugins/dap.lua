@@ -60,6 +60,8 @@ return {
 			end
 
 			vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint);
+			vim.keymap.set('n', '<leader>B', function() dap.set_breakpoint(vim.fn.input('Breakpoint condition: ')) end)
+			vim.keymap.set('n', '<leader>L', function() dap.set_breakpoint(nil, nil, vim.fn.input('Log message: ')) end)
 			vim.keymap.set("n", "<leader>gb", dap.run_to_cursor);
 			vim.keymap.set("n", "<leader>?", function() ui.eval(nil, { enter = true }) end);
 
@@ -69,6 +71,10 @@ return {
 			vim.keymap.set("n", " •`_´•f11", dap.step_out); -- Custom ghostty remap for S-F11
 			vim.keymap.set("n", "<F12>", dap.restart);
 
+			vim.keymap.set("n", "<leader><leader>term", function()
+				dap.terminate();
+				ui.close();
+			end);
 			dap.listeners.before.attach.dapui_config = function()
 				ui.open();
 			end
