@@ -36,6 +36,29 @@ return {
 				};
 			end
 
+			local php_debug_adapter = vim.fn.exepath "php-debug-adapter";
+			if php_debug_adapter == "" then
+				php_debug_adapter = vim.fn.stdpath "data" .. "/mason/bin/php-debug-adapter";
+			end
+
+			if php_debug_adapter ~= "" then
+				dap.adapters.php_debug_adapter = {
+					type = "executable",
+					command = php_debug_adapter,
+				};
+				dap.configurations.php = {
+					{
+						name = "Listen for XDebug",
+						type = "php_debug_adapter",
+						request = "launch",
+						port = 9000,
+						pathMappings = {
+							["/home/wpcom/public_html/"] = "${workspaceFolder}"
+						}
+					}
+				}
+			end
+
 			vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint);
 			vim.keymap.set("n", "<leader>gb", dap.run_to_cursor);
 			vim.keymap.set("n", "<leader>?", function() ui.eval(nil, { enter = true }) end);
