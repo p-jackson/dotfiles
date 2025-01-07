@@ -2,7 +2,7 @@
 
 if [[ "$1" == "cal" ]]; then
 	SESSION_NAME="wp-calypso"
-	CALYPSO_DIR="$HOME/dev/wp-calypso"
+	CALYPSO_DIR="$REPO_PATH/wp-calypso"
 
 	# Check if session already exists
 	tmux has-session -t "$SESSION_NAME" 2>/dev/null
@@ -26,7 +26,20 @@ if [[ "$1" == "cal" ]]; then
 	tmux switch-client -t "$SESSION_NAME":1
 
 elif [[ "$1" == "zk" ]]; then
-	echo "Not implemented yet"
+	SESSION_NAME="notes"
+
+	# Check if session already exists
+	tmux has-session -t "$SESSION_NAME" 2>/dev/null
+	if [ $? -eq 0 ]; then
+		echo "Session '$SESSION_NAME' already exists. Switching..."
+		tmux switch-client -t "$SESSION_NAME"
+		exit 0
+	fi
+
+	tmux new-session -d -s "$SESSION_NAME" -c "$NOTES_PATH"
+	tmux send-keys -t "$SESSION_NAME":1 "nvim 0-inbox/" C-m
+	
+	tmux switch-client -t "$SESSION_NAME":1
 else
 	echo "Usage: $0 cal|zk"
 	exit 1
