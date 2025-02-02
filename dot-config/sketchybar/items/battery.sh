@@ -7,5 +7,5 @@ battery=(
 	icon.font="$FONT:Black:16.0"
 )
 
-sketchybar --add item battery right --set battery "${battery[@]}" --subscribe battery system_woke power_source_change
+sketchybar --add item battery right --set battery "${battery[@]}" --subscribe battery system_woke power_source_change front_app_switched
 

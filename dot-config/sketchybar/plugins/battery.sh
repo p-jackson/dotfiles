@@ -23,7 +23,7 @@ if [[ "$CHARGING" != "" ]]; then
   ICON=􀢋
 fi
 
-if [[ "$PERCENTAGE" = "100" && "$CHARGING" != "" ]]; then
+if [[ "$PERCENTAGE" = "100" && "$CHARGING" = "" ]]; then
 	sketchybar --set "$NAME" drawing=off
 	exit 0
 fi
