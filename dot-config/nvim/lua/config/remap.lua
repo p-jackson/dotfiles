@@ -1,5 +1,5 @@
 -- Show Oil for file management
-vim.keymap.set("n", "<leader>ls", ":Oil<cr>")
+vim.keymap.set("n", "-", ":Oil<cr>")
 
 -- Execute Lua inline
 vim.keymap.set("n", "<leader><leader>x", "<cmd>source %<CR>")
