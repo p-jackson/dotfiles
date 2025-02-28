@@ -16,12 +16,9 @@ if [[ "$1" == "cal" ]]; then
 	tmux send-keys -t "$SESSION_NAME":1 "nvim" C-m
 
 	tmux new-window -t "$SESSION_NAME":2 -c "$CALYPSO_DIR"
-	tmux send-keys -t "$SESSION_NAME":2 "lazygit" C-m
-
-	tmux new-window -t "$SESSION_NAME":3 -c "$CALYPSO_DIR"
-	tmux split-window -v -t "$SESSION_NAME":3 -c "$CALYPSO_DIR"
-	tmux resize-pane -t "$SESSION_NAME":3.1 -y 25%
-	tmux send-keys -t "$SESSION_NAME":3 "nvm use && yarn && yarn start" C-m
+	tmux split-window -v -t "$SESSION_NAME":2 -c "$CALYPSO_DIR"
+	tmux resize-pane -t "$SESSION_NAME":2.1 -y 25%
+	tmux send-keys -t "$SESSION_NAME":2 "nvm use && yarn && yarn start" C-m
 	
 	tmux switch-client -t "$SESSION_NAME":1
 
