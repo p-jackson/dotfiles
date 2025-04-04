@@ -100,6 +100,9 @@ fi
 
 # MISC SETUP
 
+# Secrets 🤫
+[ -f "$HOME/.zsh_secrets" ] && source "$HOME/.zsh_secrets"
+
 # nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
