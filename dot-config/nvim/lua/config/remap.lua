@@ -6,6 +6,9 @@ vim.keymap.set("n", "<leader><leader>x", "<cmd>source %<CR>")
 vim.keymap.set("n", "<leader>x", ":.lua<CR>")
 vim.keymap.set("v", "<leader>x", ":lua<CR>")
 
+-- Stop accidentally opening help when my finger slips
+vim.keymap.set({ 'n', 'i' }, '<F1>', '<Nop>', { noremap = true, silent = true })
+
 -- Toggle undotree
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
 
