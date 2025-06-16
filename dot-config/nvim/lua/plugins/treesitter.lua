@@ -3,7 +3,11 @@ return {
 	build = ":TSUpdate",
 	opts = {
 		-- A list of parser names, or "all" (the listed parsers should always be installed)
-		ensure_installed = "all",
+		ensure_installed = {
+			"bash", "c", "cpp", "css", "csv", "diff", "dockerfile", "editorconfig", "git_config", "git_rebase", "gitattributes",
+			"gitcommit", "gitignore", "html", "ini", "javascript", "json", "latex", "lua", "luadoc", "make", "markdown",
+			"markdown_inline", "php", "phpdoc", "rust", "scss", "sql", "tmux", "toml", "tsx", "typescript", "vim", "vimdoc",
+			"yaml" },
 
 		-- Install parsers synchronously (only applied to `ensure_installed`)
 		sync_install = false,
