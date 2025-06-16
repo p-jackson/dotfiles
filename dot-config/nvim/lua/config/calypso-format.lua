@@ -7,7 +7,7 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 	callback = function()
 		local bufnr = vim.api.nvim_get_current_buf()
 		if projects.is_buffer_in_calypso(bufnr) then
-			vim.cmd('EslintFixAll')
+			vim.cmd('LspEslintFixAll')
 		end
 	end
 })
