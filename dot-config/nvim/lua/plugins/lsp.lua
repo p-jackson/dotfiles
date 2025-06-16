@@ -1,7 +1,7 @@
 return {
-	{ "williamboman/mason.nvim" },
+	{ "mason-org/mason.nvim" },
 	{
-		"williamboman/mason-lspconfig.nvim",
+		"mason-org/mason-lspconfig.nvim",
 		--		opts = {
 		--			ensure_installed = { 'ts_ls', 'rust_analyzer', 'sumneko_lua' },
 		--			handlers = {
