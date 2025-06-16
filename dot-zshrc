@@ -70,6 +70,11 @@ alias zk="cd \$NOTES_PATH" # Nav to notes directory
 alias zn="create-new-note" # Create new note, script is in ~/bin folder
 alias zr="cd \$NOTES_PATH && nvim -p \$NOTES_PATH/0-inbox/*.md" # Review notes in inbox
 
+# Use `bat` instead of `cat` (bat knows to fallback to cat on non-interactive terminals)
+if command -v bat &> /dev/null; then
+  alias cat='bat'
+fi
+
 
 # COMPLETIONS
 
