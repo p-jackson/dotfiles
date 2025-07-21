@@ -23,6 +23,29 @@ if [[ "$1" == "cal" ]]; then
 	
 	tmux switch-client -t "$SESSION_NAME":1
 
+elif [[ "$1" == "gb" ]]; then
+	SESSION_NAME="gutenberg"
+	GUTENBERG_DIR="$REPO_PATH/gutenberg"
+
+	# Check if session already exists
+	tmux has-session -t "$SESSION_NAME" 2>/dev/null
+	if [ $? -eq 0 ]; then
+		echo "Session '$SESSION_NAME' already exists. Switching..."
+		tmux switch-client -t "$SESSION_NAME"
+		exit 0
+	fi
+
+	tmux new-session -d -s "$SESSION_NAME" -c "$GUTENBERG_DIR"
+	tmux send-keys -t "$SESSION_NAME":1 "nvm use && nvim" C-m
+
+	tmux new-window -t "$SESSION_NAME":2 -c "$GUTENBERG_DIR"
+	tmux send-keys -t "$SESSION_NAME":2 "nvm use" C-m
+	tmux split-window -v -t "$SESSION_NAME":2 -c "$GUTENBERG_DIR"
+	tmux resize-pane -t "$SESSION_NAME":2.1 -y 50%
+	tmux send-keys -t "$SESSION_NAME":2 "nvm use && npm install && npm start" C-m
+	
+	tmux switch-client -t "$SESSION_NAME":1
+
 elif [[ "$1" == "jp" ]]; then
 	SESSION_NAME="jetpack"
 	JETPACK_DIR="$REPO_PATH/jetpack"
@@ -84,7 +107,7 @@ elif [[ "$1" == "zk" ]]; then
 	
 	tmux switch-client -t "$SESSION_NAME":1
 else
-	echo "Usage: $0 cal|jp|wpcom|zk"
+	echo "Usage: $0 cal|gb|jp|wpcom|zk"
 	exit 1
 fi
 
