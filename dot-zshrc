@@ -73,6 +73,7 @@ alias zr="cd \$NOTES_PATH && nvim -p \$NOTES_PATH/0-inbox/*.md" # Review notes i
 # Use `bat` instead of `cat` (bat knows to fallback to cat on non-interactive terminals)
 if command -v bat &> /dev/null; then
   alias cat='bat'
+	export PAGER=bat
 fi
 
 
