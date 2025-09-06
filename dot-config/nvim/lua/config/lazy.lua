@@ -20,4 +20,8 @@ require("lazy").setup({
 	defaults = {
 		version = "*",
 	},
+
+	rocks = {
+		enable = false,
+	}
 })
