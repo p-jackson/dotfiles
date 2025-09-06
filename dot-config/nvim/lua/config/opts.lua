@@ -21,6 +21,12 @@ vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 
+-- Sync clipboard between OS and Neovim.
+-- Schedule the setting after `UiEnter` because it can increase startup-time.
+vim.schedule(function()
+	vim.o.clipboard = 'unnamedplus'
+end)
+
 -- Used by obsidian to format md nicely, but if it starts to hide things
 -- in other languages then we should move this to a ftplugin
 vim.opt.conceallevel = 2
