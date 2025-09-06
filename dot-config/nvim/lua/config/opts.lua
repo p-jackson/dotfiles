@@ -10,6 +10,7 @@ vim.wo.wrap = false
 vim.o.cursorline = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+vim.wo.signcolumn = "yes"
 vim.o.statusline = "%<%f %h%w%m%r%=%y %l:%c %P"
 
 -- Relative line numbering in Netrw
