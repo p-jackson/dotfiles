@@ -32,3 +32,8 @@ end)
 -- in other languages then we should move this to a ftplugin
 vim.opt.conceallevel = 2
 
+vim.filetype.add({
+	extension = {
+		mdc = 'markdown',
+	},
+})
