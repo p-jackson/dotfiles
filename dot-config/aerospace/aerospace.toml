@@ -139,7 +139,7 @@ alt-c = 'exec-and-forget open -a Calendar'
 # alt-f = 'workspace F'
 alt-g = 'exec-and-forget open -a ChatGPT'
 alt-i = 'exec-and-forget open -a Mail'
-alt-m = 'exec-and-forget open -a Music'
+alt-m = 'exec-and-forget open -a Spotify'
 # alt-n = 'workspace N'
 # alt-o = 'workspace O'
 alt-p = 'exec-and-forget open -a Linear'
@@ -223,7 +223,7 @@ shift-j = 'volume mute-toggle'
 shift-k = 'volume mute-toggle'
 
 [[on-window-detected]]
-if.app-id = 'com.apple.Music'
+if.app-id = 'com.spotify.client'
 run = 'move-node-to-workspace M'
 
 [[on-window-detected]]
