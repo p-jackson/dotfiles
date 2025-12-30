@@ -42,6 +42,10 @@ vim.keymap.set("n", "<leader>pdf",
 vim.keymap.set("n", "tu", function()
 	vim.cmd("TransferUpload " .. vim.fn.expand("%:p"))
 end)
+-- Upload current wpcom folder to sandbox
+vim.keymap.set("n", "ti", function()
+	vim.cmd("TransferUpload " .. vim.fn.expand("%:p:h:r"))
+end)
 -- Download current wpcom file from sandbox
 vim.keymap.set("n", "td", function()
 	vim.cmd("TransferDownload " .. vim.fn.expand("%:p"))
