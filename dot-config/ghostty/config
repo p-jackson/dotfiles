@@ -32,3 +32,4 @@ keybind = ctrl+5=text:\x1b[53;5u
 keybind = ctrl+6=text:\x1b[54;5u
 keybind = shift+f11=text: •`_´•f11
 
+keybind = shift+enter=text:\x1b\r
