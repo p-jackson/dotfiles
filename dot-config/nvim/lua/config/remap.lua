@@ -34,10 +34,6 @@ vim.keymap.set("n", "<leader>zp",
 vim.keymap.set("n", "<leader>zg",
 	":Telescope live_grep search_dirs={\"~/Library/Mobile\\ Documents/iCloud~md~obsidian/Documents/notes\"}<cr>")
 
--- Run pdflatex on current file
-vim.keymap.set("n", "<leader>pdf",
-	":silent !pdflatex '%:p'<cr>")
-
 -- Upload current wpcom file to sandbox
 vim.keymap.set("n", "tu", function()
 	vim.cmd("TransferUpload " .. vim.fn.expand("%:p"))
