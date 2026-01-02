@@ -3,7 +3,5 @@ return {
 	dependencies = {
 		"nvim-lua/plenary.nvim"
 	},
-	config = function()
-		require("gitlinker").setup()
-	end
+	config = true,
 }
