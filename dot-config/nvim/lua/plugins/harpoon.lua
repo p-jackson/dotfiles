@@ -16,7 +16,7 @@ return {
 		vim.keymap.set("n", "<leader>a", mark.add_file)
 		vim.keymap.set("n", "<C-e>", ui.toggle_quick_menu)
 
-		-- Alacritty maps Cmd+H to •`_´•h etc.
+		-- Ghostty maps Cmd+H to •`_´•h etc.
 		vim.keymap.set("n", "•`_´•h", function()
 			ui.nav_file(1); vim.cmd("normal! zz");
 		end)

@@ -19,8 +19,5 @@ $ mkdir ~/.config
 # Link our dotfiles into place using stow
 $ cd ~/dev/dotfiles
 $ stow . -t ~ --dotfiles
-
-# Install Alacritty theme (after Alacritty config dir has been linked)
-$ git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/themes
 ```
 
