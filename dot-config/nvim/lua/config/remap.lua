@@ -23,7 +23,8 @@ vim.keymap.set("n", "<leader>\\", ":vsplit<cr><C-w>w");
 vim.keymap.set("n", "<leader>-", ":split<cr><C-w>w");
 
 -- Close current window/split
-vim.keymap.set("n", "<leader>dd", "<C-w>q");
+-- NOTE: Removing to see if it is useful to get the default keybind into muscle memory
+-- vim.keymap.set("n", "<leader>dd", "<C-w>q");
 
 -- Clear search result highlights with <Esc> in normal mode
 vim.keymap.set("n", "<Esc>", ":nohlsearch<cr>")
