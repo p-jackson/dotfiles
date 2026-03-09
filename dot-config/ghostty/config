@@ -7,7 +7,7 @@ font-feature = ss19
 font-feature = ss20
 font-thicken = true
 
-theme = NightOwlDark
+theme = TokyoNight
 background-opacity = 0.92
 
 macos-titlebar-style = hidden

@@ -37,3 +37,6 @@ vim.filetype.add({
 		mdc = 'markdown',
 	},
 })
+
+-- Set colorscheme (installed by Lazy)
+vim.cmd.colorscheme("tokyonight")
