@@ -61,7 +61,7 @@ git config --global alias.lg 'log --graph --oneline --decorate --color --all'
 
 # Repos
 alias dev="cd $REPO_PATH"
-alias cal="cd $REPO_PATH/wp-calypso"
+alias cal="cd $REPO_PATH/wp-calypso/trunk"
 alias dot="cd $REPO_PATH/dotfiles"
 alias studio="cd $REPO_PATH/local-environment"
 

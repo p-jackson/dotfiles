@@ -2,7 +2,7 @@
 
 if [[ "$1" == "cal" ]]; then
 	SESSION_NAME="wp-calypso"
-	CALYPSO_DIR="$REPO_PATH/wp-calypso"
+	CALYPSO_DIR="$REPO_PATH/wp-calypso/trunk"
 
 	# Check if session already exists
 	tmux has-session -t "$SESSION_NAME" 2>/dev/null
