@@ -1,0 +1,153 @@
+[settings]
+animate = false
+hot_reload = true
+
+# Spaces are managed by default.
+default_disable = false
+
+focus_follows_mouse = false
+mouse_hides_on_focus = false
+
+# Prevent certain apps from stealing focus/causing workspace switches
+# Provide bundle identifiers (e.g., "com.apple.Spotlight")
+# Examples:
+#   "com.apple.dock", "com.apple.systemuiserver", "com.apple.SecurityAgent",
+#   "com.raycast.macos", "com.apple.Spotlight"
+auto_focus_blacklist = []
+
+[settings.layout]
+# Layout Types:
+# 	- "traditional" (i3/sway-like containers)
+# 	- "bsp" (binary space partitioning),
+#   - "stack" (single stacked container)
+#   - "master_stack" (master area + stack area)
+# defaults to "traditional" if omitted
+#
+# This is the default layout mode if there is nothing else configured
+# in the `workspace_rules` section below.
+# You can set different layouts per workspace using `workspace_rules`.
+mode = "traditional"
+
+[settings.layout.stack]
+stack_offset = 40.0
+
+# Default stacking orientation when creating a new stack.
+# Options:
+# - "perpendicular" (default): choose the perpendicular orientation to the parent layout
+# - "same": use the same orientation as the parent layout
+# - "horizontal"/"vertical": force a specific orientation
+default_orientation = "perpendicular"
+
+[settings.layout.gaps]
+
+# Space between windows and screen edges.
+[settings.layout.gaps.outer]
+top = 12
+left = 11
+bottom = 11 
+right = 11
+
+# Space between tiled windows.
+[settings.layout.gaps.inner]
+horizontal = 12
+vertical = 12
+
+# Built-in MacBook display override.
+[settings.layout.gaps.per_display."37D8832A-2D66-02CA-B9F7-8F30A301B230".outer]
+top = 11
+left = 11
+bottom = 11 
+right = 11
+
+[settings.ui.menu_bar]
+enabled = true
+show_empty = true
+active_label = "name"
+# options are "layout" or "label"
+display_style = "label"
+
+[virtual_workspaces]
+enabled = true
+default_workspace_count = 8
+auto_assign_windows = true
+preserve_focus_per_workspace = false
+
+# Default workspace to activate on startup (0-based index).
+default_workspace = 1
+
+workspace_names = [
+	"`",
+	"1",
+	"2",
+	"3",
+	"4",
+	"m",
+	"p",
+	"s",
+]
+
+app_rules = [
+	{ app_id = "com.mitchellh.ghostty", workspace = "`" },
+	{ app_id = "com.spotify.client", workspace = "m" },
+	{ app_id = "com.brave.Browser.app.bgdbmehlmdmddlgneophbcddadgknlpm", workspace = "p" },
+	{ app_id = "com.tinyspeck.slackmacgap", workspace = "s" },
+	{ app_id = "com.codeux.apps.textual", workspace = "s" },
+]
+
+[modifier_combinations]
+comb1 = "Alt + Shift"
+
+[keys]
+
+"Alt + H" = { move_focus = "left" }
+"Alt + J" = { move_focus = "down" }
+"Alt + K" = { move_focus = "up" }
+"Alt + L" = { move_focus = "right" }
+
+"comb1 + H" = { move_node = "left" }
+"comb1 + J" = { move_node = "down" }
+"comb1 + K" = { move_node = "up" }
+"comb1 + L" = { move_node = "right" }
+
+# Some spaces are bound to launch and app, and automatically focus the workspacespace
+# "Alt + `" = { switch_to_workspace = 0 }
+"Alt + 1" = { switch_to_workspace = 1 }
+"Alt + 2" = { switch_to_workspace = 2 }
+"Alt + 3" = { switch_to_workspace = 3 }
+"Alt + 4" = { switch_to_workspace = 4 }
+# "Alt + m" = { switch_to_workspace = 5 }
+# "Alt + p" = { switch_to_workspace = 6 }
+# "Alt + s" = { switch_to_workspace = 7 }
+
+"comb1 + `" = { move_window_to_workspace = 0 }
+"comb1 + 1" = { move_window_to_workspace = 1 }
+"comb1 + 2" = { move_window_to_workspace = 2 }
+"comb1 + 3" = { move_window_to_workspace = 3 }
+"comb1 + 4" = { move_window_to_workspace = 4 }
+"comb1 + m" = { move_window_to_workspace = 5 }
+"comb1 + p" = { move_window_to_workspace = 6 }
+"comb1 + s" = { move_window_to_workspace = 7 }
+
+"Ctrl + Alt + Shift + Left" = { join_window = "left" }
+"Ctrl + Alt + Shift + Right" = { join_window = "right" }
+"Ctrl + Alt + Shift + Up" = { join_window = "up" }
+"Ctrl + Alt + Shift + Down" = { join_window = "down" }
+"Alt + Comma" = "toggle_stack"
+"Alt + Slash" = "toggle_orientation"
+"Alt + Ctrl + E" = "unjoin_windows"
+
+"Alt + Shift + Space" = "toggle_window_floating"
+"Alt + F" = "toggle_fullscreen"
+"Alt + Shift + F" = "toggle_fullscreen_within_gaps"
+"comb1 + Ctrl + Space" = "toggle_focus_floating" # briefly bring focus to floating window
+
+"Alt + Shift + Equal" = "resize_window_grow"
+"Alt + Shift + Minus" = "resize_window_shrink"
+
+"Alt + C" = { "exec" = ["/bin/bash", "-c", "open -a Calendar"] }
+"Alt + G" = { "exec" = ["/bin/bash", "-c", "open -a LibreChat"] }
+"Alt + M" = { "exec" = ["/bin/bash", "-c", "open -a Spotify && rift-cli execute workspace switch 5"] }
+"Alt + `" = { "exec" = ["/bin/bash", "-c", "open -a Ghostty && rift-cli execute workspace switch 0"] }
+"Alt + S" = { "exec" = ["/bin/bash", "-c", "open -a Slack && rift-cli execute workspace switch 7"] }
+"Alt + P" = { "exec" = ["/bin/bash", "-c", "open -a Linear && rift-cli execute workspace switch 6"] }
+
