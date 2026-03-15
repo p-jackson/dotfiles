@@ -2,6 +2,11 @@ return {
 	"coder/claudecode.nvim",
 	dependencies = { "folke/snacks.nvim", opts = { input = { enabled = true } } },
 	config = true,
+	opts = {
+		terminal = {
+			provider = "none", -- connect to tmux pane manually
+		},
+	},
 	keys = {
 		{ "<leader>a",  nil,                              desc = "AI/Claude Code" },
 		{ "<leader>ac", "<cmd>ClaudeCode<cr>",            desc = "Toggle Claude" },
