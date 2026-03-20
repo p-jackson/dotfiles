@@ -76,7 +76,7 @@ return {
 					buffer = note.bufnr,
 				})
 				vim.keymap.set("n", "<leader>zok", function()
-					return vim.api.nvim_command(":silent !review-notes.rs --ok '%:p'\n\n:bd")
+					return vim.api.nvim_command(":silent !review-notes --ok '%:p'\n\n:bd")
 				end, {
 					buffer = note.bufnr,
 				})

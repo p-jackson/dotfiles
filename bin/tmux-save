@@ -125,7 +125,7 @@ fn write_state(out: &mut dyn Write, sessions: &str) -> Result<()> {
 
 fn install_cron() -> Result<()> {
     let home = std::env::var("HOME").context("HOME not set")?;
-    let script = PathBuf::from(&home).join("bin/tmux-save.rs");
+    let script = PathBuf::from(&home).join("bin/tmux-save");
     let entry = format!("*/15 * * * * {} 2>/dev/null", script.display());
 
     let existing = Command::new("crontab")
@@ -134,7 +134,7 @@ fn install_cron() -> Result<()> {
         .map(|o| String::from_utf8_lossy(&o.stdout).to_string())
         .unwrap_or_default();
 
-    if existing.contains("tmux-save.rs") {
+    if existing.contains(&entry) {
         println!("Already installed");
         return Ok(());
     }

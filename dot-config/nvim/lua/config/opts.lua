@@ -36,6 +36,17 @@ vim.filetype.add({
 	extension = {
 		mdc = 'markdown',
 	},
+	pattern = {
+		['.*'] = {
+			priority = -math.huge,
+			function(_, bufnr)
+				local first_line = vim.api.nvim_buf_get_lines(bufnr, 0, 1, false)[1] or ''
+				if first_line:find('rust%-script') then
+					return 'rust'
+				end
+			end,
+		},
+	},
 })
 
 -- Set colorscheme (installed by Lazy)
