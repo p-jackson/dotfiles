@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+current=$(tmux display-message -p '#S')
+
+selected=$(
+  tmux list-sessions -F '#S' |
+    grep -v "^${current}$" |
+    while IFS= read -r s; do
+      if tmux list-panes -s -t "$s" -f '#{@claude_pane_waiting}' -F x 2>/dev/null | grep -q .; then
+        printf '%s 🤖\n' "$s"
+      else
+        printf '%s\n' "$s"
+      fi
+    done |
+    fzf --reverse
+) || exit 0
+
+# Strip emoji suffix before switching
+selected="${selected% 🤖}"
+tmux switch-client -t "$selected"
