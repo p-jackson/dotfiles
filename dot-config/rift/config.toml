@@ -76,18 +76,18 @@ preserve_focus_per_workspace = false
 default_workspace = 1
 
 workspace_names = [
-	"`",
-	"1",
-	"2",
-	"3",
-	"4",
+	"t",
+	"q",
+	"w",
+	"e",
+	"r",
 	"m",
 	"p",
 	"s",
 ]
 
 app_rules = [
-	{ app_id = "com.mitchellh.ghostty", workspace = "`" },
+	{ app_id = "com.mitchellh.ghostty", workspace = "t" },
 	{ app_id = "com.spotify.client", workspace = "m" },
 	{ app_id = "com.brave.Browser.app.bgdbmehlmdmddlgneophbcddadgknlpm", workspace = "p" },
 	{ app_id = "com.tinyspeck.slackmacgap", workspace = "s" },
@@ -115,6 +115,11 @@ comb1 = "Alt + Shift"
 "Alt + 2" = { switch_to_workspace = 2 }
 "Alt + 3" = { switch_to_workspace = 3 }
 "Alt + 4" = { switch_to_workspace = 4 }
+# relearning: q/w/e/r = 1/2/3/4
+"Alt + Q" = { switch_to_workspace = 1 }
+"Alt + W" = { switch_to_workspace = 2 }
+"Alt + E" = { switch_to_workspace = 3 }
+"Alt + R" = { switch_to_workspace = 4 }
 # "Alt + m" = { switch_to_workspace = 5 }
 # "Alt + p" = { switch_to_workspace = 6 }
 # "Alt + s" = { switch_to_workspace = 7 }
@@ -124,6 +129,12 @@ comb1 = "Alt + Shift"
 "comb1 + 2" = { move_window_to_workspace = 2 }
 "comb1 + 3" = { move_window_to_workspace = 3 }
 "comb1 + 4" = { move_window_to_workspace = 4 }
+# relearning: t/q/w/e/r = `/1/2/3/4
+"comb1 + T" = { move_window_to_workspace = 0 }
+"comb1 + Q" = { move_window_to_workspace = 1 }
+"comb1 + W" = { move_window_to_workspace = 2 }
+"comb1 + E" = { move_window_to_workspace = 3 }
+"comb1 + R" = { move_window_to_workspace = 4 }
 "comb1 + m" = { move_window_to_workspace = 5 }
 "comb1 + p" = { move_window_to_workspace = 6 }
 "comb1 + s" = { move_window_to_workspace = 7 }
@@ -132,6 +143,11 @@ comb1 = "Alt + Shift"
 "Ctrl + Alt + Shift + Right" = { join_window = "right" }
 "Ctrl + Alt + Shift + Up" = { join_window = "up" }
 "Ctrl + Alt + Shift + Down" = { join_window = "down" }
+# relearning: hjkl = arrow keys
+"Ctrl + Alt + Shift + H" = { join_window = "left" }
+"Ctrl + Alt + Shift + L" = { join_window = "right" }
+"Ctrl + Alt + Shift + K" = { join_window = "up" }
+"Ctrl + Alt + Shift + J" = { join_window = "down" }
 "Alt + Comma" = "toggle_stack"
 "Alt + Slash" = "toggle_orientation"
 "Alt + Ctrl + E" = "unjoin_windows"
@@ -148,6 +164,7 @@ comb1 = "Alt + Shift"
 "Alt + G" = { "exec" = ["/bin/bash", "-c", "open -a LibreChat"] }
 "Alt + M" = { "exec" = ["/bin/bash", "-c", "open -a Spotify && rift-cli execute workspace switch 5"] }
 "Alt + `" = { "exec" = ["/bin/bash", "-c", "open -a Ghostty && rift-cli execute workspace switch 0"] }
+"Alt + T" = { "exec" = ["/bin/bash", "-c", "open -a Ghostty && rift-cli execute workspace switch 0"] } # relearning: t = `
 "Alt + S" = { "exec" = ["/bin/bash", "-c", "open -a Slack && rift-cli execute workspace switch 7"] }
 "Alt + P" = { "exec" = ["/bin/bash", "-c", "open -a Linear && rift-cli execute workspace switch 6"] }
 
