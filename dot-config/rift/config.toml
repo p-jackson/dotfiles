@@ -95,7 +95,7 @@ app_rules = [
 ]
 
 [modifier_combinations]
-comb1 = "Alt + Shift"
+comb1 = "Alt + Cmd"
 
 [keys]
 
@@ -139,26 +139,26 @@ comb1 = "Alt + Shift"
 "comb1 + p" = { move_window_to_workspace = 6 }
 "comb1 + s" = { move_window_to_workspace = 7 }
 
-"Ctrl + Alt + Shift + Left" = { join_window = "left" }
-"Ctrl + Alt + Shift + Right" = { join_window = "right" }
-"Ctrl + Alt + Shift + Up" = { join_window = "up" }
-"Ctrl + Alt + Shift + Down" = { join_window = "down" }
+"Alt + Cmd + Shift + Left" = { join_window = "left" }
+"Alt + Cmd + Shift + Right" = { join_window = "right" }
+"Alt + Cmd + Shift + Up" = { join_window = "up" }
+"Alt + Cmd + Shift + Down" = { join_window = "down" }
 # relearning: hjkl = arrow keys
-"Ctrl + Alt + Shift + H" = { join_window = "left" }
-"Ctrl + Alt + Shift + L" = { join_window = "right" }
-"Ctrl + Alt + Shift + K" = { join_window = "up" }
-"Ctrl + Alt + Shift + J" = { join_window = "down" }
+"Alt + Cmd + Shift + H" = { join_window = "left" }
+"Alt + Cmd + Shift + L" = { join_window = "right" }
+"Alt + Cmd + Shift + K" = { join_window = "up" }
+"Alt + Cmd + Shift + J" = { join_window = "down" }
 "Alt + Comma" = "toggle_stack"
 "Alt + Slash" = "toggle_orientation"
 "Alt + Ctrl + E" = "unjoin_windows"
 
-"Alt + Shift + Space" = "toggle_window_floating"
+"Alt + Cmd + Space" = "toggle_window_floating"
 "Alt + F" = "toggle_fullscreen"
-"Alt + Shift + F" = "toggle_fullscreen_within_gaps"
-"comb1 + Ctrl + Space" = "toggle_focus_floating" # briefly bring focus to floating window
+"Alt + Cmd + F" = "toggle_fullscreen_within_gaps"
+"Alt + Cmd + Shift + Space" = "toggle_focus_floating" # briefly bring focus to floating window
 
-"Alt + Shift + Equal" = "resize_window_grow"
-"Alt + Shift + Minus" = "resize_window_shrink"
+"Alt + Cmd + Equal" = "resize_window_grow"
+"Alt + Cmd + Minus" = "resize_window_shrink"
 
 "Alt + C" = { "exec" = ["/bin/bash", "-c", "open -a Calendar"] }
 "Alt + G" = { "exec" = ["/bin/bash", "-c", "open -a LibreChat"] }

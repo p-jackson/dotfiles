@@ -1,7 +1,8 @@
 # ENVIRONMENT SETUP
 
-# Commands can be edited with vim keys
+# KEY BINDINGS
 set -o vi
+bindkey '^F' history-incremental-search-backward # ctrl+r taken by tmux config
 
 # Share history between sessions
 setopt SHARE_HISTORY

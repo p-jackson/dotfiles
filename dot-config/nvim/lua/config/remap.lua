@@ -24,7 +24,8 @@ vim.keymap.set("n", "<leader>-", ":split<cr><C-w>w");
 
 -- Close current window/split
 -- NOTE: Removing to see if it is useful to get the default keybind into muscle memory
--- vim.keymap.set("n", "<leader>dd", "<C-w>q");
+-- NOTE: Re-enabling because I want to use C-w to change tmux windows
+vim.keymap.set("n", "<leader>dd", "<C-w>q");
 
 -- Clear search result highlights with <Esc> in normal mode
 vim.keymap.set("n", "<Esc>", ":nohlsearch<cr>")

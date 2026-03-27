@@ -1,0 +1,36 @@
+(defcfg
+	process-unmapped-keys yes
+	macos-dev-names-include (
+		"Apple Internal Keyboard / Trackpad"
+		"Karabiner DriverKit VirtualHIDKeyboard 1.8.0"
+		"NuPhy Air75 V2-1"
+	)
+)
+
+(defvar
+	tap-timeout 200
+	hold-timeout 200
+)
+
+(defsrc
+	caps
+	a s d f
+	j k l ;
+)
+
+(defalias
+	a-mod (tap-hold-release $tap-timeout $hold-timeout a lctl)
+	s-mod (tap-hold-release $tap-timeout $hold-timeout s lalt)
+	d-mod (tap-hold-release $tap-timeout $hold-timeout d lmet)
+	f-mod (tap-hold-release $tap-timeout $hold-timeout f lsft)
+	j-mod (tap-hold-release $tap-timeout $hold-timeout j rsft)
+	k-mod (tap-hold-release $tap-timeout $hold-timeout k lmet)
+	l-mod (tap-hold-release $tap-timeout $hold-timeout l ralt)
+	;-mod (tap-hold-release $tap-timeout $hold-timeout ; rctl)
+)
+
+(deflayer base
+	lctl
+	@a-mod @s-mod @d-mod @f-mod
+	@j-mod @k-mod @l-mod @;-mod
+)
