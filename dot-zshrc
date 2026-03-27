@@ -43,6 +43,11 @@ export PATH=$HOME/.cargo/bin:$PATH
 # Scripts installed by pipx
 export PATH=$PATH:$HOME/.local/bin
 
+# Docker commands if they are installed locally
+if [[ -d "$HOME/.docker/bin" ]]; then
+  export PATH=$HOME/.docker/bin:$PATH
+fi
+
 
 # PROMPT (starship)
 
