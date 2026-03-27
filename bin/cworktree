@@ -14,7 +14,7 @@ use std::path::PathBuf;
 use std::process::{exit, Command};
 
 #[derive(Parser)]
-#[command(name = "calypso-worktree")]
+#[command(name = "cworktree")]
 struct Cli {
     #[command(subcommand)]
     command: Option<Commands>,
