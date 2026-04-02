@@ -157,17 +157,20 @@ fn main() -> Result<()> {
                 errors.push(e);
             }
 
-            // Restore whitelisted commands
+            // Restore whitelisted commands, and cd shell panes to saved dir
             for (pi, pane) in win.panes.iter().enumerate() {
+                let target = format!("{}:{}.{}", sess.name, win.index, pi);
                 if SAFE_COMMANDS_TO_RESTORE.contains(&pane.command.as_str()) {
                     if let Err(e) = run_tmux(
-                        &[
-                            "send-keys",
-                            "-t",
-                            &format!("{}:{}.{}", sess.name, win.index, pi),
-                            &pane.command,
-                            "Enter",
-                        ],
+                        &["send-keys", "-t", &target, &pane.command, "Enter"],
+                        cli.dry_run,
+                    ) {
+                        errors.push(e);
+                    }
+                } else {
+                    let cd_cmd = format!("cd '{}'", pane.dir.replace('\'', "'\\''"));
+                    if let Err(e) = run_tmux(
+                        &["send-keys", "-t", &target, &cd_cmd, "Enter"],
                         cli.dry_run,
                     ) {
                         errors.push(e);
