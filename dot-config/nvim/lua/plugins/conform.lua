@@ -14,8 +14,9 @@ return {
 	opts = {
 		notify_on_error = false,
 		format_on_save = function(bufnr)
-			if require("config.projects").is_buffer_in_calypso(bufnr) then
-				-- Calypso is formatted with ESLint --fix-all, not an LSP
+			if require("config.projects").is_buffer_in_calypso(bufnr)
+				and vim.fn.exists(':LspEslintFixAll') == 2 then
+				-- Calypso JS/TS is formatted with ESLint --fix-all, not conform
 				-- See calypso-format.lua
 				return nil
 			end
