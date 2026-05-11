@@ -43,9 +43,9 @@ return {
 			documentation = {
 				auto_show = true,
 				auto_show_delay_ms = 0,
-				window = { border = 'rounded' }
+				window = { border = 'solid' }
 			},
-			menu = { border = 'rounded' },
+			menu = { border = 'solid' },
 		},
 
 		sources = {

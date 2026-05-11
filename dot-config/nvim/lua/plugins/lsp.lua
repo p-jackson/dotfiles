@@ -13,7 +13,7 @@ return {
 				callback = function(event)
 					vim.keymap.set("n", "<F2>", vim.lsp.buf.rename)
 					vim.keymap.set({ "n", "x" }, "<F4>", vim.lsp.buf.code_action)
-					vim.keymap.set("n", "K", function() vim.lsp.buf.hover({ border = "rounded" }) end)
+					vim.keymap.set("n", "K", function() vim.lsp.buf.hover({ border = "solid" }) end)
 					vim.keymap.set("n", "gr",
 						function() require("telescope.builtin").lsp_references { path_display = { "smart" } } end, {})
 					vim.keymap.set("n", "gi",
@@ -26,7 +26,7 @@ return {
 					vim.keymap.set("n", "<leader>fs", require("telescope.builtin").lsp_document_symbols, {})
 					vim.keymap.set("n", "<leader>fS", require("telescope.builtin").lsp_dynamic_workspace_symbols, {})
 					vim.keymap.set("n", "gl", function()
-						vim.diagnostic.open_float({ border = "rounded" })
+						vim.diagnostic.open_float({ border = "solid" })
 					end)
 
 					local client = vim.lsp.get_client_by_id(event.data.client_id)
