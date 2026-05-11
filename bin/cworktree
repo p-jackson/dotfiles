@@ -4,9 +4,11 @@
 //! inquire = "0.7"
 //! clap = { version = "4.5", features = ["derive"] }
 //! regex = "1"
+//! rand = "0.8"
 //! ```
 
 use clap::{Parser, Subcommand};
+use rand::Rng;
 use regex::Regex;
 use inquire::{InquireError, Select, Text};
 use std::fs;
@@ -273,6 +275,11 @@ fn main() {
         fs::create_dir_all(&dst_secrets_dir).expect("Failed to create secrets dir");
         fs::copy(&src_secrets, &dst_secrets).expect("Failed to copy e2e secrets");
     }
+
+    // Write .env with random port
+    let port: u16 = rand::thread_rng().gen_range(1000..=2000);
+    fs::write(worktree_path.join(".env"), format!("PORT={}\n", port))
+        .expect("Failed to write .env");
 
     // Create tmux session
     let session_name = branch_name.replace("/", "-");
