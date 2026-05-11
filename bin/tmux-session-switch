@@ -4,7 +4,7 @@ set -euo pipefail
 current=$(tmux display-message -p '#S')
 
 selected=$(
-  tmux list-sessions -F '#S' |
+  tmux list-sessions -F '#{session_activity} #S' | sort -rn | cut -d' ' -f2- |
     grep -v "^${current}$" |
     while IFS= read -r s; do
       if tmux list-panes -s -t "$s" -f '#{@claude_pane_waiting}' -F x 2>/dev/null | grep -q .; then
