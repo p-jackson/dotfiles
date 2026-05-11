@@ -31,6 +31,7 @@ return {
 				end,
 				'fallback'
 			},
+			["<C-j>"] = { "hide", "fallback" },
 		},
 
 		appearance = {
