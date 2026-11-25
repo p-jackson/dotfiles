@@ -170,3 +170,17 @@ export HERD_PHP_74_INI_SCAN_DIR="/Users/philip/Library/Application Support/Herd/
 
 # Herd injected PHP 8.0 configuration.
 export HERD_PHP_80_INI_SCAN_DIR="/Users/philip/Library/Application Support/Herd/config/php/80/"
+
+# Default `dx serve`/`run`/`build` to iOS (Dioxus 0.7 can't disambiguate the `mobile` feature).
+# Explicit platform flags still win. Bypass with `command dx ...`.
+dx() {
+  local sub="$1"
+  if [[ "$sub" == "serve" || "$sub" == "run" || "$sub" == "build" ]] \
+     && [[ " ${@} " != *" --ios "* && " ${@} " != *" --android "* \
+        && " ${@} " != *" --web "* && " ${@} " != *" --server "* \
+        && " ${@} " != *" --desktop "* && " ${@} " != *" --platform "* ]]; then
+    command dx "$@" --ios
+  else
+    command dx "$@"
+  fi
+}
