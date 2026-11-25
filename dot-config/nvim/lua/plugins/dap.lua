@@ -36,6 +36,33 @@ return {
 				};
 			end
 
+			local js_debug_adapter = vim.fn.exepath "js-debug-adapter";
+			if js_debug_adapter == "" then
+				js_debug_adapter = vim.fn.stdpath "data" .. "/mason/bin/js-debug-adapter";
+			end
+
+			if js_debug_adapter ~= "" then
+				dap.adapters.js_debug_adapter = {
+					type = "executable",
+					command = js_debug_adapter,
+				};
+				local js_based_languages = { "typescript", "javascript", "typescriptreact", "javascriptreact" }
+				for _, lang in ipairs(js_based_languages) do
+					dap.configurations[lang] = {
+						{
+							name = "Attach to :3000",
+							type = "js_debug_adapter",
+							request = "attach",
+							program = "${file}",
+							cwd = vim.fn.getcwd(),
+							protocol = "inspector",
+							webRoot = "${workspaceFolder}/client",
+							port = 9222,
+						}
+					}
+				end
+			end
+
 			local php_debug_adapter = vim.fn.exepath "php-debug-adapter";
 			if php_debug_adapter == "" then
 				php_debug_adapter = vim.fn.stdpath "data" .. "/mason/bin/php-debug-adapter";
@@ -75,6 +102,7 @@ return {
 				dap.terminate();
 				ui.close();
 			end);
+
 			dap.listeners.before.attach.dapui_config = function()
 				ui.open();
 			end

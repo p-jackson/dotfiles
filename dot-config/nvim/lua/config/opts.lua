@@ -12,6 +12,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.wo.signcolumn = "yes"
 vim.o.statusline = "%<%f %h%w%m%r%=%y %l:%c %P"
+vim.opt.nrformats:append("alpha")
 
 -- Relative line numbering in Netrw
 vim.g.netrw_bufsettings = "noma nomod nonu nobl nowrap ro rnu"
@@ -50,4 +51,5 @@ vim.filetype.add({
 })
 
 -- Set colorscheme (installed by Lazy)
-vim.cmd.colorscheme("tokyonight")
+vim.o.background = "dark"
+vim.cmd.colorscheme("gruvbox")

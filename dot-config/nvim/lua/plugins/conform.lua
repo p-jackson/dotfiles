@@ -35,10 +35,22 @@ return {
 			json = { "prettierd", "prettier", stop_after_first = true },
 			css = { "prettierd", "prettier", stop_after_first = true },
 			typst = { "typstyle" },
+			php = { "phpcbf" },
 		},
 		formatters = {
 			typstyle = {
 				prepend_args = { "--wrap-text" },
+			},
+			phpcbf = {
+				-- Run from a dir containing phpcs.xml so phpcbf's upward
+				-- discovery picks up the project ruleset (and any relative
+				-- autoload paths inside it resolve correctly).
+				cwd = function(self, ctx)
+					return require("conform.util").root_file({
+						"phpcs.xml", "phpcs.xml.dist", ".phpcs.xml", ".phpcs.xml.dist",
+					})(self, ctx)
+				end,
+				require_cwd = true,
 			},
 		},
 	},

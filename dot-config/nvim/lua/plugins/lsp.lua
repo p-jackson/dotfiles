@@ -3,9 +3,9 @@ return {
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			{ "mason-org/mason.nvim", opts = {} },
-			"mason-org/mason-lspconfig.nvim",
+			-- "mason-org/mason-lspconfig.nvim",
 			{ "j-hui/fidget.nvim",    opts = {} },
-			"saghen/blink.cmp"
+			-- "saghen/blink.cmp"
 		},
 		config = function()
 			vim.api.nvim_create_autocmd("LspAttach", {
@@ -69,57 +69,103 @@ return {
 				severity_sort = false,
 			}
 
-			local capabilities = pcall(require, 'blink.cmp') and require('blink.cmp').get_lsp_capabilities() or {}
+			-- Calypso (and other ESLint 9 projects on legacy .eslintrc) need eslintrc
+			-- mode; otherwise the LSP looks for flat config and reports
+			-- "Could not find config file".
+			vim.lsp.config("eslint", {
+				settings = {
+					useFlatConfig = false,
+				},
+			})
 
-			local server_configs = {
-				ts_ls = {
-					init_options = {
-						hostInfo = 'neovim',
-						maxTsServerMemory = 4096,
-						tsserver = {
-							useSyntaxServer = 'auto' }
-					},
-				},
-				lua_ls = {
-					settings = {
-						Lua = {
-							workspace = {
-								library = {
-									[vim.fn.stdpath "config"] = true,
-									[vim.fn.stdpath "data" .. "/lazy/lazy.nvim"] = true,
-								},
-								checkThirdParty = false,
-							},
-							completion = {
-								callSnippet = 'Replace',
-							},
-							diagnostics = {
-								globals = { 'vim' },
-							},
-						},
-					}
-				},
-				tinymist = {
-					settings = {
-						formatterMode = "typstyle",
-					},
-				},
-			}
+			vim.lsp.enable({ 'ts_ls', 'lua_ls', 'tinymist', 'rust_analyzer', 'jsonls', 'stylelint', 'eslint', 'intelephense' })
+			vim.o.autocomplete = true
+			vim.opt.complete = { 't', 'o' } -- override the default completion sources - I don't want buffer scanning
+			vim.opt.completeopt = { 'menuone', 'noselect' }
+			vim.o.pumheight = 8
+			vim.o.pumborder = 'solid'
 
-			require("mason-lspconfig").setup {
-				ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
-				automatic_installation = false,
-				handlers = {
-					function(server_name)
-						local server = server_configs[server_name] or {}
-						-- This handles overriding only values explicitly passed
-						-- by the server configuration above. Useful when disabling
-						-- certain features of an LSP (for example, turning off formatting for ts_ls)
-						server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-						require('lspconfig')[server_name].setup(server)
-					end,
+			vim.api.nvim_create_autocmd('LspAttach', {
+				callback = function(ev)
+					local client = assert(vim.lsp.get_client_by_id(ev.data.client_id))
+					if client:supports_method('textDocument/completion') then
+						vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
+					end
+				end,
+			})
+
+			-- I already use C-e for a tmux binding, so can't use it to dismiss the completion menu.
+			vim.keymap.set("i", "<C-j>", function()
+				if vim.fn.pumvisible() == 1 then
+					return vim.keycode("<C-e>")
+				end
+				return vim.keycode("<C-j>")
+			end, { expr = true })
+
+			vim.lsp.buf.hover({ border = "solid" })
+			vim.lsp.config("*", {
+				ui = {
+					border = "solid",
 				},
-			}
+			})
+
+			-- local capabilities = pcall(require, 'blink.cmp') and require('blink.cmp').get_lsp_capabilities() or {}
+
+			-- local server_configs = {
+			-- 	ts_ls = {
+			-- 		init_options = {
+			-- 			hostInfo = 'neovim',
+			-- 			maxTsServerMemory = 4096,
+			-- 			tsserver = {
+			-- 				useSyntaxServer = 'auto' }
+			-- 		},
+			-- 	},
+			-- 	lua_ls = {
+			-- 		settings = {
+			-- 			Lua = {
+			-- 				workspace = {
+			-- 					library = {
+			-- 						[vim.fn.stdpath "config"] = true,
+			-- 						[vim.fn.stdpath "data" .. "/lazy/lazy.nvim"] = true,
+			-- 					},
+			-- 					checkThirdParty = false,
+			-- 				},
+			-- 				completion = {
+			-- 					callSnippet = 'Replace',
+			-- 				},
+			-- 				diagnostics = {
+			-- 					globals = { 'vim' },
+			-- 				},
+			-- 			},
+			-- 		}
+			-- 	},
+			-- 	tinymist = {
+			-- 		settings = {
+			-- 			formatterMode = "typstyle",
+			-- 		},
+			-- 	},
+			-- }
+
+			-- require("mason-lspconfig").setup {
+			-- 	ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
+			-- 	automatic_installation = false,
+			-- 	automatic_enable = {
+			-- 		exclude = {
+			-- 			"ts_ls",
+			-- 			-- "tsgo",
+			-- 		}
+			-- 	},
+			-- 	handlers = {
+			-- 		function(server_name)
+			-- 			local server = server_configs[server_name] or {}
+			-- 			-- This handles overriding only values explicitly passed
+			-- 			-- by the server configuration above. Useful when disabling
+			-- 			-- certain features of an LSP (for example, turning off formatting for ts_ls)
+			-- 			server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+			-- 			require('lspconfig')[server_name].setup(server)
+			-- 		end,
+			-- 	},
+			-- }
 		end
 	},
 }

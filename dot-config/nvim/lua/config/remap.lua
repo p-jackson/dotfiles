@@ -10,13 +10,16 @@ vim.keymap.set("v", "<leader>x", ":lua<CR>")
 vim.keymap.set({ 'n', 'i' }, '<F1>', '<Nop>', { noremap = true, silent = true })
 
 -- Toggle undotree
-vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
+vim.keymap.set("n", "<leader>u", require("undotree").open)
 
 -- Keep cursor in the middle of the screen when scrolling and searching
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
+
+-- Use <leader>w to trigger built-in window command layer. I'm using C-w as a tmux binding.
+vim.keymap.set("n", "<leader>w", "<C-w>");
 
 -- Create and focus new split
 vim.keymap.set("n", "<leader>\\", ":vsplit<cr><C-w>w");
@@ -64,5 +67,6 @@ vim.keymap.set("n", "<leader>gw", ":silent !gh repo view --web<cr>")
 -- Quickfix list navigation
 -- Ghostty maps Cmd+J to •`_´•j etc.
 vim.keymap.set("n", "•`_´•d", vim.diagnostic.setqflist)
+vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist) -- Adds just this file's
 vim.keymap.set("n", "•`_´•j", "<cmd>cnext<CR>")
 vim.keymap.set("n", "•`_´•k", "<cmd>cprev<CR>")
