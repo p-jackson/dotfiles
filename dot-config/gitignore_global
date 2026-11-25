@@ -1,6 +1,11 @@
 /AGENTS.md
 .worktrees/
+tmp/
 .DS_Store
 Thumbs.db
+.sbx/
+.helix/languages.toml
 
 *.local.md
+
+**/.claude/settings.local.json
