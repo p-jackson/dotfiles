@@ -3,8 +3,7 @@
 	macos-dev-names-include (
 		"Apple Internal Keyboard / Trackpad"
 		"Karabiner DriverKit VirtualHIDKeyboard 1.8.0"
-		"NuPhy Air75 V2-1"
-		"NuPhy Air75 Dongle"
+		"NuPhy Air75 V2 Dongle"
 		"0x9B1F94F76B17E146"
 	)
 )
