@@ -1,5 +1,7 @@
 [settings]
 animate = false
+animation_duration = 0.25
+animation_fps = 60
 hot_reload = true
 
 # Spaces are managed by default.
@@ -26,7 +28,14 @@ auto_focus_blacklist = []
 # This is the default layout mode if there is nothing else configured
 # in the `workspace_rules` section below.
 # You can set different layouts per workspace using `workspace_rules`.
-mode = "traditional"
+# mode = "scrolling"
+
+[settings.layout.scrolling]
+column_width_ratio = 0.5
+min_column_width_ratio = 0.3
+max_column_width_ratio = 0.9
+alignment = "center"
+focus_navigation_style = "niri"
 
 [settings.layout.stack]
 stack_offset = 40.0
@@ -66,6 +75,9 @@ active_label = "name"
 # options are "layout" or "label"
 display_style = "label"
 
+[settings.ui.stack_line]
+enabled = false
+
 [virtual_workspaces]
 enabled = true
 default_workspace_count = 8
@@ -84,6 +96,13 @@ workspace_names = [
 	"m",
 	"p",
 	"s",
+]
+
+workspace_rules = [
+	{ workspace = "t", layout = "traditional" },
+	{ workspace = "m", layout = "traditional" },
+	{ workspace = "p", layout = "traditional" },
+	{ workspace = "s", layout = "traditional" },
 ]
 
 app_rules = [
@@ -111,10 +130,10 @@ comb1 = "Alt + Cmd"
 
 # Some spaces are bound to launch and app, and automatically focus the workspacespace
 # "Alt + `" = { switch_to_workspace = 0 }
-"Alt + 1" = { switch_to_workspace = 1 }
-"Alt + 2" = { switch_to_workspace = 2 }
-"Alt + 3" = { switch_to_workspace = 3 }
-"Alt + 4" = { switch_to_workspace = 4 }
+# "Alt + 1" = { switch_to_workspace = 1 }
+# "Alt + 2" = { switch_to_workspace = 2 }
+# "Alt + 3" = { switch_to_workspace = 3 }
+# "Alt + 4" = { switch_to_workspace = 4 }
 # relearning: q/w/e/r = 1/2/3/4
 "Alt + Q" = { switch_to_workspace = 1 }
 "Alt + W" = { switch_to_workspace = 2 }
@@ -125,8 +144,6 @@ comb1 = "Alt + Cmd"
 # "Alt + s" = { switch_to_workspace = 7 }
 
 "comb1 + `" = { move_window_to_workspace = 0 }
-"comb1 + 1" = { move_window_to_workspace = 1 }
-"comb1 + 2" = { move_window_to_workspace = 2 }
 "comb1 + 3" = { move_window_to_workspace = 3 }
 "comb1 + 4" = { move_window_to_workspace = 4 }
 # relearning: t/q/w/e/r = `/1/2/3/4
@@ -136,8 +153,10 @@ comb1 = "Alt + Cmd"
 "comb1 + E" = { move_window_to_workspace = 3 }
 "comb1 + R" = { move_window_to_workspace = 4 }
 "comb1 + m" = { move_window_to_workspace = 5 }
-"comb1 + p" = { move_window_to_workspace = 6 }
-"comb1 + s" = { move_window_to_workspace = 7 }
+# "comb1 + p" = { move_window_to_workspace = 6 }
+"comb1 + 2" = { move_window_to_workspace = 6 }
+# "comb1 + s" = { move_window_to_workspace = 7 }
+"comb1 + 1" = { move_window_to_workspace = 7 }
 
 "Alt + Cmd + Shift + Left" = { join_window = "left" }
 "Alt + Cmd + Shift + Right" = { join_window = "right" }
@@ -148,23 +167,24 @@ comb1 = "Alt + Cmd"
 "Alt + Cmd + Shift + L" = { join_window = "right" }
 "Alt + Cmd + Shift + K" = { join_window = "up" }
 "Alt + Cmd + Shift + J" = { join_window = "down" }
-"Alt + Comma" = "toggle_stack"
+# "Alt + Comma" = "toggle_stack"
+"Alt + Shift + Comma" = "toggle_stack"
 "Alt + Slash" = "toggle_orientation"
 "Alt + Ctrl + E" = "unjoin_windows"
 
 "Alt + Cmd + Space" = "toggle_window_floating"
-"Alt + F" = "toggle_fullscreen"
-"Alt + Cmd + F" = "toggle_fullscreen_within_gaps"
+"Alt + F" = "toggle_fullscreen_within_gaps"
+"Alt + Cmd + F" = "toggle_fullscreen"
 "Alt + Cmd + Shift + Space" = "toggle_focus_floating" # briefly bring focus to floating window
 
 "Alt + Cmd + Equal" = "resize_window_grow"
 "Alt + Cmd + Minus" = "resize_window_shrink"
 
-"Alt + C" = { "exec" = ["/bin/bash", "-c", "open -a Calendar"] }
+# "Alt + C" = { "exec" = ["/bin/bash", "-c", "open -a Calendar"] }
 "Alt + G" = { "exec" = ["/bin/bash", "-c", "open -a LibreChat"] }
-"Alt + M" = { "exec" = ["/bin/bash", "-c", "open -a Spotify && rift-cli execute workspace switch 5"] }
+"Alt + 1" = { "exec" = ["/bin/bash", "-c", "open -a Spotify && rift-cli execute workspace switch 5"] }
 "Alt + `" = { "exec" = ["/bin/bash", "-c", "open -a Ghostty && rift-cli execute workspace switch 0"] }
 "Alt + T" = { "exec" = ["/bin/bash", "-c", "open -a Ghostty && rift-cli execute workspace switch 0"] } # relearning: t = `
-"Alt + S" = { "exec" = ["/bin/bash", "-c", "open -a Slack && rift-cli execute workspace switch 7"] }
-"Alt + P" = { "exec" = ["/bin/bash", "-c", "open -a Linear && rift-cli execute workspace switch 6"] }
+"Alt + Tab" = { "exec" = ["/bin/bash", "-c", "open -a Slack && rift-cli execute workspace switch 7"] }
+"Alt + 2" = { "exec" = ["/bin/bash", "-c", "open -a Linear && rift-cli execute workspace switch 6"] }
 
