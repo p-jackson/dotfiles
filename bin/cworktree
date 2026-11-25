@@ -243,6 +243,28 @@ fn main() {
                 eprintln!("Failed to create worktree for PR");
                 exit(1);
             }
+
+            // Set upstream so the branch is ready to push (fetch via pull/N/head
+            // leaves no tracking config). Assumes a same-repo PR branch on origin.
+            let _ = Command::new("git")
+                .args([
+                    "-C",
+                    calypso_root.to_str().unwrap(),
+                    "config",
+                    &format!("branch.{}.remote", branch_name),
+                    "origin",
+                ])
+                .status();
+            let _ = Command::new("git")
+                .args([
+                    "-C",
+                    calypso_root.to_str().unwrap(),
+                    "config",
+                    &format!("branch.{}.merge", branch_name),
+                    &format!("refs/heads/{}", branch_name),
+                ])
+                .status();
+
             (branch_name, worktree_path)
         }
     };
@@ -255,6 +277,16 @@ fn main() {
     if src_settings.exists() {
         fs::create_dir_all(&dst_settings_dir).expect("Failed to create .claude dir");
         fs::copy(&src_settings, &dst_settings).expect("Failed to copy Claude settings");
+    }
+
+    // Copy Helix languages config
+    let src_helix = calypso_root.join(".helix").join("languages.toml");
+    let dst_helix_dir = worktree_path.join(".helix");
+    let dst_helix = dst_helix_dir.join("languages.toml");
+
+    if src_helix.exists() {
+        fs::create_dir_all(&dst_helix_dir).expect("Failed to create .helix dir");
+        fs::copy(&src_helix, &dst_helix).expect("Failed to copy Helix languages config");
     }
 
     // Copy CLAUDE.local.md
