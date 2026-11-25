@@ -16,7 +16,9 @@ window-padding-y = 2
 macos-titlebar-style = hidden
 confirm-close-surface = false
 mouse-hide-while-typing = true
+macos-option-as-alt = true
 
+keybind = ctrl+[=text:\x1b
 keybind = cmd+d=text:•`_´•d
 keybind = cmd+h=text:•`_´•h
 keybind = cmd+i=text:•`_´•i
