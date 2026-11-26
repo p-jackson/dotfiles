@@ -2,9 +2,16 @@
 
 set -e
 
-KANATA_BIN=$(which kanata)
+KANATA_BIN=$(command -v kanata || true)
 USERNAME=$(whoami)
 CONFIG_PATH="/Users/$USERNAME/.config/kanata/kanata.kbd"
+
+# kanata 1.12 talks the VirtualHIDDevice v6 protocol; v8 (shipped by current
+# Karabiner-Elements) fails with "connect_failed asio.system:2".
+REQUIRED_DRIVER_MAJOR=6
+REQUIRED_DRIVER_VERSION="6.2.0"
+DRIVER_URL="https://github.com/pqrs-org/Karabiner-DriverKit-VirtualHIDDevice/releases/tag/v${REQUIRED_DRIVER_VERSION}"
+VHID_MANAGER="/Applications/.Karabiner-VirtualHIDDevice-Manager.app/Contents/MacOS/Karabiner-VirtualHIDDevice-Manager"
 
 KARABINER_DAEMON_BIN="/Library/Application Support/org.pqrs/Karabiner-DriverKit-VirtualHIDDevice/Applications/Karabiner-VirtualHIDDevice-Daemon.app/Contents/MacOS/Karabiner-VirtualHIDDevice-Daemon"
 KARABINER_PLIST="/Library/LaunchDaemons/org.pqrs.Karabiner-VirtualHIDDevice-Daemon.plist"
@@ -24,9 +31,23 @@ fi
 
 if [ ! -f "$KARABINER_DAEMON_BIN" ]; then
   echo "Error: Karabiner-VirtualHIDDevice-Daemon binary not found."
-  echo "Please install from https://github.com/pqrs-org/Karabiner-DriverKit-VirtualHIDDevice/releases"
-  echo "Then run: /Applications/.Karabiner-VirtualHIDDevice-Manager.app/Contents/MacOS/Karabiner-VirtualHIDDevice-Manager activate"
+  echo "Please install v${REQUIRED_DRIVER_VERSION} from ${DRIVER_URL}"
+  echo "Then run: sudo '${VHID_MANAGER}' activate"
   exit 1
+fi
+
+DRIVER_VERSION=$(defaults read "${KARABINER_DAEMON_BIN%/MacOS/*}/Info.plist" CFBundleShortVersionString 2>/dev/null || echo unknown)
+if [ "${DRIVER_VERSION%%.*}" != "$REQUIRED_DRIVER_MAJOR" ]; then
+  echo "Error: Karabiner-DriverKit-VirtualHIDDevice is v${DRIVER_VERSION}, but kanata needs v${REQUIRED_DRIVER_MAJOR}.x."
+  echo "Uninstall Karabiner-Elements if present, then run: sudo '${VHID_MANAGER}' deactivate"
+  echo "Install v${REQUIRED_DRIVER_VERSION} from ${DRIVER_URL}"
+  echo "Then run: sudo '${VHID_MANAGER}' activate"
+  exit 1
+fi
+
+if [ -d "/Applications/Karabiner-Elements.app" ]; then
+  echo "Warning: Karabiner-Elements is installed. It ships a newer driver that breaks kanata and"
+  echo "         grabs the keyboard itself. Uninstall it (Settings > Misc > Uninstall)."
 fi
 
 # --- Karabiner VirtualHIDDevice Daemon ---
@@ -67,6 +88,7 @@ EOF
 
 sudo chown root:wheel "$KARABINER_PLIST"
 sudo chmod 644 "$KARABINER_PLIST"
+sudo launchctl bootout system "$KARABINER_PLIST" 2>/dev/null || true
 sudo launchctl enable system/org.pqrs.Karabiner-VirtualHIDDevice-Daemon
 sudo launchctl bootstrap system "$KARABINER_PLIST"
 
@@ -117,6 +139,21 @@ EOF
 
 sudo chown root:wheel "$KANATA_PLIST"
 sudo chmod 644 "$KANATA_PLIST"
+sudo launchctl bootout system "$KANATA_PLIST" 2>/dev/null || true
+sudo launchctl enable system/com.kanata.service
 sudo launchctl bootstrap system "$KANATA_PLIST"
 
-echo "Done. Both services are running."
+# macOS pins permissions to the resolved binary path, not the Homebrew symlink,
+# so this needs redoing after every `brew upgrade kanata`.
+KANATA_REAL_BIN=$(realpath "$KANATA_BIN")
+
+echo "Done. Both services are loaded."
+echo
+echo "Now grant kanata permissions in System Settings > Privacy & Security, under BOTH:"
+echo "  - Input Monitoring"
+echo "  - Accessibility"
+echo "Click +, press Cmd+Shift+G and add: $KANATA_REAL_BIN"
+echo "(Remove any stale kanata entries pointing at an old path first.)"
+echo
+echo "launchd restarts kanata every few seconds, so it picks up permissions on its own."
+echo "Check it with: tail -f /var/log/kanata.log /var/log/kanata.error.log"
