@@ -1,0 +1,16 @@
+onboarding = false
+
+[ui.toast]
+delivery = "terminal"
+
+[ui]
+status_indicators = "dots"
+
+[theme]
+name = "gruvbox"
+auto_switch = false
+
+[keys]
+prefix = "ctrl+s"
+navigate_workspace_up = "ctrl+p"
+navigate_workspace_down = "ctrl+n"
