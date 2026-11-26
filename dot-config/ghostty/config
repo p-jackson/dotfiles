@@ -7,9 +7,9 @@ font-feature = ss19
 font-feature = ss20
 font-thicken = true
 
-theme = TokyoNight Moon
-background-opacity = 0.85
-background-blur = macos-glass-regular
+theme = light:Gruvbox Light,dark:Gruvbox Dark
+background-opacity = 0.95
+#$background-blur = macos-glass-regular
 window-padding-x = 8
 window-padding-y = 2
 
