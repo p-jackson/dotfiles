@@ -1,0 +1,34 @@
+theme = "gruvbox"
+
+[editor]
+line-number = "relative"
+cursorline = true
+end-of-line-diagnostics = "hint"
+
+[editor.cursor-shape]
+insert = "bar"
+
+[editor.file-picker]
+hidden = false
+
+[editor.lsp]
+display-progress-messages = true
+
+[editor.inline-diagnostics]
+cursor-line = "warning"
+
+[keys.normal.space]
+B = [
+	':pipe-to (gh browse -n -c "%{buffer_name}:%{selection_line_start}-%{selection_line_end}" | tr -d "\n" | pbcopy) </dev/null >/dev/null 2>&1 &',
+	':echo "permalink → clipboard: %{buffer_name}:%{selection_line_start}-%{selection_line_end}"',
+]
+
+[keys.select.space]
+B = [
+	':pipe-to (gh browse -n -c "%{buffer_name}:%{selection_line_start}-%{selection_line_end}" | tr -d "\n" | pbcopy) </dev/null >/dev/null 2>&1 &',
+	':echo "permalink → clipboard: %{buffer_name}:%{selection_line_start}-%{selection_line_end}"',
+]
+
+# [language-server.harper-ls]
+# command = "harper-ls"
+# args = ["--stdio"]

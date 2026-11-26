@@ -1,0 +1,31 @@
+[[language]]
+name = "javascript"
+language-servers = ["typescript-language-server", "vscode-eslint-language-server"]
+
+[language-server.route-lsp]
+command = "/Users/philip/dev/route-lsp/target/release/route-lsp"
+environment = { ROUTE_LSP_LOG = "info" }
+
+[[language]]
+name = "typescript"
+language-servers = [
+	"typescript-language-server",
+	"vscode-eslint-language-server",
+	"route-lsp",
+]
+
+[[language]]
+name = "tsx"
+language-servers = [
+	"typescript-language-server",
+	"vscode-eslint-language-server",
+	"route-lsp",
+]
+
+[[language]]
+name = "jsx"
+language-servers = ["typescript-language-server", "vscode-eslint-language-server"]
+
+[[language]]
+name = "markdown"
+soft-wrap.enable = true
