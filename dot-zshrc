@@ -63,7 +63,7 @@ alias la='ls -hAl'
 alias v=nvim
 
 alias lg="lazygit"
-git config --global alias.lg 'log --graph --oneline --decorate --color --all'
+git config --global --get alias.lg >/dev/null || git config --global alias.lg 'log --graph --oneline --decorate --color --all'
 
 # Repos
 alias dev="cd $REPO_PATH"
